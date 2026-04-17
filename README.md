@@ -172,18 +172,22 @@ Group_14_Bus_Managment_System/
 
 ## 🔧 Backend Setup (Windows)
 
-> [!NOTE] 
-> If you are using **PowerShell**, Windows may block Python/Node activation scripts. It is highly recommended to use **Command Prompt** (cmd) to bypass Windows Execution Policies.
+> [!NOTE]
+> **PowerShell (Recommended):** Use `venv\Scripts\Activate.ps1` to activate the virtual environment. If you get a script execution error, run this **once** to fix it:
+> ```powershell
+> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+> ```
+> **Command Prompt:** Use `venv\Scripts\activate.bat` instead.
 
-```cmd
+```powershell
 # 1. Navigate to backend folder
 cd backend
 
 # 2. Create virtual environment
 python -m venv venv
 
-# 3. Activate virtual environment (must be using Command Prompt)
-venv\Scripts\activate.bat
+# 3. Activate virtual environment (PowerShell)
+venv\Scripts\Activate.ps1
 
 # 4. Install dependencies
 pip install -r requirements.txt
@@ -243,17 +247,17 @@ npm run dev
 
 ## 🚀 Run Instructions (Daily Use)
 
-To start the project daily, open two generic Command Prompts inside VS Code:
+To start the project daily, open two **PowerShell** terminals inside VS Code:
 
 **Terminal 1 — Backend:**
-```cmd
+```powershell
 cd backend
-venv\Scripts\activate.bat
+venv\Scripts\Activate.ps1
 python manage.py runserver
 ```
 
 **Terminal 2 — Frontend:**
-```cmd
+```powershell
 cd frontend
 npm run dev
 ```
