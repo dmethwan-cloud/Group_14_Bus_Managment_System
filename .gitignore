@@ -1,0 +1,91 @@
+# ==============================================================
+# Smart Bus E-Ticketing System — .gitignore
+# Python + Django + React + Vite
+# ==============================================================
+
+# --------------- Python / Django ---------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+.venv/
+ENV/
+
+# Django
+*.log
+*.pot
+*.sqlite3
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# --------------- Environment variables ---------------
+.env
+.env.*
+!.env.example
+
+# --------------- Node / React / Vite ---------------
+node_modules/
+dist/
+build/
+.cache/
+.parcel-cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# --------------- IDE / Editor ---------------
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# --------------- OS ---------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# --------------- Testing ---------------
+coverage/
+.nyc_output/
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# --------------- Misc ---------------
+*.bak
+*.tmp
+*.swp
