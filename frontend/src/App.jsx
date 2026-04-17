@@ -6,6 +6,7 @@ import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import VerifyEmailPage from './pages/auth/VerifyEmailPage';
 import LandingPage from './pages/LandingPage';
+import ForgotPasswordPage from './pages/auth/ForgotPasswordPage';
 
 // Layouts
 import AdminLayout from './layouts/AdminLayout';
@@ -20,6 +21,10 @@ import OperatorDashboard from './pages/dashboards/OperatorDashboard';
 import PassengerDashboard from './pages/dashboards/PassengerDashboard';
 import ConductorDashboard from './pages/dashboards/ConductorDashboard';
 
+// Shared Pages
+import ProfilePage from './pages/shared/ProfilePage';
+import ChangePasswordPage from './pages/shared/ChangePasswordPage';
+
 // Components
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -32,13 +37,13 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/verify-email" element={<VerifyEmailPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
         {/* ── Protected Admin Routes ── */}
         <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="dashboard" element={<AdminDashboard />} />
-            {/* Additional routes will be implemented by teammates */}
             <Route path="users" element={<AdminUsers />} />
             <Route path="operators" element={<div className="p-4">Operator Approvals (Placeholder)</div>} />
             <Route path="routes" element={<div className="p-4">Global Routes (Placeholder)</div>} />
@@ -55,6 +60,8 @@ function App() {
             <Route path="seat-layouts" element={<div className="p-4">Seat Layouts (Placeholder)</div>} />
             <Route path="routes" element={<div className="p-4">Assigned Routes (Placeholder)</div>} />
             <Route path="passengers" element={<div className="p-4">Passenger Lists (Placeholder)</div>} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="change-password" element={<ChangePasswordPage />} />
           </Route>
         </Route>
 
@@ -65,7 +72,8 @@ function App() {
             <Route path="dashboard" element={<PassengerDashboard />} />
             <Route path="bookings" element={<div className="p-4">My Bookings (Placeholder)</div>} />
             <Route path="tickets" element={<div className="p-4">My Tickets (Placeholder)</div>} />
-            <Route path="profile" element={<div className="p-4">Profile Settings (Placeholder)</div>} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="change-password" element={<ChangePasswordPage />} />
           </Route>
         </Route>
 
@@ -76,6 +84,8 @@ function App() {
             <Route path="dashboard" element={<ConductorDashboard />} />
             <Route path="validate" element={<div className="p-4">Validate Tickets (Placeholder)</div>} />
             <Route path="passengers" element={<div className="p-4">Passenger List (Placeholder)</div>} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="change-password" element={<ChangePasswordPage />} />
           </Route>
         </Route>
 

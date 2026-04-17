@@ -1,58 +1,68 @@
 import React from 'react';
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
 import { logout, getUser } from '../utils/auth';
 
 const PassengerLayout = () => {
   const user = getUser();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const handleLogout = () => logout();
 
   const navLinks = [
-    { name: 'Search Buses', path: '/passenger/dashboard' },
-    { name: 'My Bookings', path: '/passenger/bookings' },
-    { name: 'My Tickets', path: '/passenger/tickets' },
-    { name: 'Profile Settings', path: '/passenger/profile' },
+    { name: 'Search Buses', path: '/passenger/dashboard', icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' },
+    { name: 'My Bookings', path: '/passenger/bookings', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01' },
+    { name: 'My Tickets', path: '/passenger/tickets', icon: 'M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z' },
+    { name: 'My Profile', path: '/passenger/profile', icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' },
+    { name: 'Change Password', path: '/passenger/change-password', icon: 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z' },
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
-      {/* Top Navbar */}
-      <nav className="bg-primary-700 text-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-bold tracking-tight">SmartTicket</h1>
-              <div className="hidden md:ml-10 md:flex md:space-x-4">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    className={`px-3 py-2 rounded-md text-sm font-medium ${
-                      location.pathname === link.path ? 'bg-primary-800 text-white' : 'hover:bg-primary-600'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-sm">Hi, {user?.full_name?.split(' ')[0] || 'Passenger'}</span>
-              <button 
-                onClick={handleLogout} 
-                className="bg-primary-600 hover:bg-primary-800 px-4 py-2 rounded-md text-sm font-medium transition-colors"
-              >
-                Logout
-              </button>
-            </div>
-          </div>
+    <div className="flex h-screen bg-slate-50">
+      <aside className="sidebar text-slate-300">
+        <div className="sidebar-header">
+          <h1 className="text-xl font-bold text-white tracking-wide">SmartTicket <span className="text-emerald-500">Passenger</span></h1>
         </div>
-      </nav>
+        <nav className="flex-1 p-4 overflow-y-auto">
+          {navLinks.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              className={`sidebar-link ${location.pathname.startsWith(link.path) ? 'sidebar-link-active !border-emerald-500 text-emerald-400 bg-emerald-500/10' : ''}`}
+            >
+              <svg className="sidebar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={link.icon} />
+              </svg>
+              {link.name}
+            </Link>
+          ))}
+        </nav>
+        <div className="p-4 border-t border-white/10">
+          <button onClick={handleLogout} className="flex items-center gap-3 px-4 py-3 w-full rounded-lg text-sm font-medium text-red-400 hover:bg-red-500/10 transition-all duration-200">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            Logout
+          </button>
+        </div>
+      </aside>
 
-      {/* Main Content Area */}
-      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Outlet />
+      <main className="flex-1 flex flex-col overflow-hidden">
+        <header className="h-16 bg-white shadow-sm flex items-center justify-between px-8 z-10 border-b border-slate-200">
+          <h2 className="text-xl font-semibold text-slate-800">Passenger Dashboard</h2>
+          <div className="flex items-center gap-4">
+            <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm">
+              {user?.full_name?.charAt(0).toUpperCase() || 'P'}
+            </div>
+            <span className="text-sm font-medium text-slate-600">
+              {user?.full_name || 'Passenger'}
+            </span>
+          </div>
+        </header>
+
+        <div className="flex-1 overflow-y-auto p-8">
+          <Outlet />
+        </div>
       </main>
     </div>
   );

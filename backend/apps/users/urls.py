@@ -12,6 +12,9 @@ from .views import (
     MeView,
     UserListView,
     UserDetailView,
+    ForgotPasswordView,
+    ResetPasswordView,
+    ChangePasswordView,
 )
 
 urlpatterns = [
@@ -21,6 +24,9 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='auth-login'),
     path('logout/', LogoutView.as_view(), name='auth-logout'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token-refresh'),
+    path('forgot-password/', ForgotPasswordView.as_view(), name='auth-forgot-password'),
+    path('reset-password/', ResetPasswordView.as_view(), name='auth-reset-password'),
+    path('change-password/', ChangePasswordView.as_view(), name='auth-change-password'),
 
     # Current user
     path('me/', MeView.as_view(), name='auth-me'),

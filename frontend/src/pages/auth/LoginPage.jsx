@@ -44,7 +44,7 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg border border-slate-100">
+      <div className="max-w-md w-full space-y-8 glass-card">
         <div>
           <h2 className="mt-2 text-center text-3xl font-extrabold text-slate-900">
             Welcome Back
@@ -77,7 +77,12 @@ const LoginPage = () => {
             </div>
             
             <div>
-              <label htmlFor="password" className="input-label">Password</label>
+              <div className="flex items-center justify-between">
+                <label htmlFor="password" className="input-label">Password</label>
+                <Link to="/forgot-password" className="text-sm font-medium text-primary-600 hover:text-primary-500 mb-1.5">
+                  Forgot Password?
+                </Link>
+              </div>
               <input
                 id="password"
                 name="password"

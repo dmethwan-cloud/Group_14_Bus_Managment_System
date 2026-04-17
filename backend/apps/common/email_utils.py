@@ -55,6 +55,49 @@ Smart Bus E-Ticketing Team
         raise
 
 
+def send_password_reset_email(user):
+    """
+    Generate a 6-digit OTP, save it to the user, and send a password reset email.
+    Reuses the same OTP fields as email verification.
+    """
+    import random
+    from django.utils import timezone
+
+    otp = str(random.randint(100000, 999999))
+    user.otp = otp
+    user.otp_created_at = timezone.now()
+    user.save(update_fields=['otp', 'otp_created_at'])
+
+    subject = 'Smart Bus E-Ticketing System — Password Reset OTP'
+    message = f"""
+Hi {user.full_name},
+
+We received a request to reset your password for the Smart Bus E-Ticketing System account associated with {user.email}.
+
+Your Password Reset OTP: {otp}
+
+(This code will expire in 10 minutes)
+
+If you did not request a password reset, please ignore this email. Your account remains secure.
+
+Best regards,
+Smart Bus E-Ticketing Team
+    """.strip()
+
+    try:
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[user.email],
+            fail_silently=False,
+        )
+        logger.info(f'Password reset email sent to {user.email}')
+    except Exception as e:
+        logger.error(f'Failed to send password reset email to {user.email}: {e}')
+        raise
+
+
 def send_custom_email(subject, message, recipient_list):
     """
     Generic email sender utility.

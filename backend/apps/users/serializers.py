@@ -110,3 +110,41 @@ class UserListSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['id', 'email', 'full_name', 'role', 'is_verified', 'is_active', 'created_at']
+
+
+class ForgotPasswordSerializer(serializers.Serializer):
+    """Serializer for forgot-password: validates that the email exists."""
+
+    email = serializers.EmailField()
+
+    def validate_email(self, value):
+        if not CustomUser.objects.filter(email=value).exists():
+            raise serializers.ValidationError('No account found with this email address.')
+        return value
+
+
+class ResetPasswordSerializer(serializers.Serializer):
+    """Serializer for reset-password: validates OTP and new password."""
+
+    email = serializers.EmailField()
+    otp = serializers.CharField(max_length=6)
+    new_password = serializers.CharField(write_only=True, min_length=8)
+    confirm_password = serializers.CharField(write_only=True)
+
+    def validate(self, attrs):
+        if attrs['new_password'] != attrs['confirm_password']:
+            raise serializers.ValidationError({'confirm_password': 'Passwords do not match.'})
+        return attrs
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    """Serializer for change-password: logged-in user changes their own password."""
+
+    old_password = serializers.CharField(write_only=True)
+    new_password = serializers.CharField(write_only=True, min_length=8)
+    confirm_password = serializers.CharField(write_only=True)
+
+    def validate(self, attrs):
+        if attrs['new_password'] != attrs['confirm_password']:
+            raise serializers.ValidationError({'confirm_password': 'Passwords do not match.'})
+        return attrs
