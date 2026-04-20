@@ -17,7 +17,11 @@ import ConductorLayout from './layouts/ConductorLayout';
 // Dashboards
 import AdminDashboard from './pages/dashboards/AdminDashboard';
 import AdminUsers from './pages/dashboards/AdminUsers';
+import AdminRoutes from './pages/dashboards/AdminRoutes';
+import AdminAssignApprovals from './pages/dashboards/AdminAssignApprovals';
 import OperatorDashboard from './pages/dashboards/OperatorDashboard';
+import OperatorAddBus from './pages/dashboards/OperatorAddBus';
+import OperatorAssignBus from './pages/dashboards/OperatorAssignBus';
 import PassengerDashboard from './pages/dashboards/PassengerDashboard';
 import ConductorDashboard from './pages/dashboards/ConductorDashboard';
 
@@ -46,8 +50,11 @@ function App() {
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="users" element={<AdminUsers />} />
             <Route path="operators" element={<div className="p-4">Operator Approvals (Placeholder)</div>} />
-            <Route path="routes" element={<div className="p-4">Global Routes (Placeholder)</div>} />
+            <Route path="routes" element={<AdminRoutes />} />
+            <Route path="assign-approvals" element={<AdminAssignApprovals />} />
             <Route path="bookings" element={<div className="p-4">All Bookings (Placeholder)</div>} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="change-password" element={<ChangePasswordPage />} />
           </Route>
         </Route>
 
@@ -56,9 +63,8 @@ function App() {
           <Route path="/operator" element={<OperatorLayout />}>
             <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="dashboard" element={<OperatorDashboard />} />
-            <Route path="buses" element={<div className="p-4">My Fleet (Placeholder)</div>} />
-            <Route path="seat-layouts" element={<div className="p-4">Seat Layouts (Placeholder)</div>} />
-            <Route path="routes" element={<div className="p-4">Assigned Routes (Placeholder)</div>} />
+            <Route path="add-bus" element={<OperatorAddBus />} />
+            <Route path="assign-buses" element={<OperatorAssignBus />} />
             <Route path="passengers" element={<div className="p-4">Passenger Lists (Placeholder)</div>} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="change-password" element={<ChangePasswordPage />} />

@@ -1,4 +1,9 @@
-"""Routes App — Placeholder URLs"""
+"""Routes App — URLs"""
+
 from django.urls import path
-from .views import RoutePlaceholderView
-urlpatterns = [path('', RoutePlaceholderView.as_view(), name='routes-placeholder')]
+from .views import RouteListCreateView, RouteDetailView
+
+urlpatterns = [
+    path('', RouteListCreateView.as_view(), name='route-list-create'),
+    path('<int:pk>/', RouteDetailView.as_view(), name='route-detail'),
+]
