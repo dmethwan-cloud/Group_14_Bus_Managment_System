@@ -171,6 +171,18 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserListSerializer
     queryset = CustomUser.objects.all()
 
+class ConductorListView(generics.ListAPIView):
+    """
+    GET /api/auth/conductors/
+    Admin and Operator — list all active conductors.
+    """
+    from apps.common.permissions import IsAdminOrOperator
+    permission_classes = [IsAuthenticated, IsAdminOrOperator]
+    serializer_class = UserListSerializer
+    
+    def get_queryset(self):
+        return CustomUser.objects.filter(role=CustomUser.Role.CONDUCTOR, is_active=True, is_verified=True).order_by('full_name')
+
 class ForgotPasswordView(APIView):
     """
     POST /api/auth/forgot-password/

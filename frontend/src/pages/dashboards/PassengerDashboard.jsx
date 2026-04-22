@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getUser } from '../../utils/auth';
 import axiosInstance from '../../api/axiosInstance';
+import BookingModal from '../../components/BookingModal';
 
 const PassengerDashboard = () => {
   const user = getUser();
@@ -14,8 +15,13 @@ const PassengerDashboard = () => {
   const [searched, setSearched] = useState(false);
   const [searching, setSearching] = useState(false);
   const [loadingRoutes, setLoadingRoutes] = useState(true);
+  
+  // Bookings state
+  const [selectedBus, setSelectedBus] = useState(null);
+  const [bookings, setBookings] = useState([]);
+  const [loadingBookings, setLoadingBookings] = useState(true);
 
-  // Fetch all routes to build From/To dropdowns
+  // Fetch routes and bookings
   useEffect(() => {
     const fetchRoutes = async () => {
       try {
@@ -33,7 +39,20 @@ const PassengerDashboard = () => {
         setLoadingRoutes(false);
       }
     };
+
+    const fetchBookings = async () => {
+      try {
+        const res = await axiosInstance.get('/bookings/');
+        setBookings(res.data.results || res.data);
+      } catch {
+        console.error('Failed to load bookings');
+      } finally {
+        setLoadingBookings(false);
+      }
+    };
+
     fetchRoutes();
+    fetchBookings();
   }, []);
 
   // Filter destinations based on selected origin
@@ -245,7 +264,10 @@ const PassengerDashboard = () => {
                         </span>
                       </div>
                     </div>
-                    <button className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-xl transition-all shadow-sm hover:shadow-md">
+                    <button 
+                      onClick={() => setSelectedBus(bus)}
+                      className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-xl transition-all shadow-sm hover:shadow-md"
+                    >
                       Book Now →
                     </button>
                   </div>
@@ -256,16 +278,76 @@ const PassengerDashboard = () => {
         </div>
       )}
 
-      {/* Upcoming Trips Placeholder */}
+      {/* Upcoming Trips */}
       {!searched && (
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
-          <h3 className="text-lg font-bold text-slate-800 mb-4">🗓️ Your Upcoming Trips</h3>
-          <div className="text-center py-8">
-            <p className="text-5xl mb-3">🎟️</p>
-            <p className="text-slate-500 font-medium">No upcoming trips yet.</p>
-            <p className="text-slate-400 text-sm mt-1">Search for a bus above to book your first trip!</p>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+          <div className="px-8 py-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+            <h3 className="text-lg font-bold text-slate-800">🗓️ Your Upcoming Trips</h3>
           </div>
+          
+          {loadingBookings ? (
+            <div className="p-8 text-center text-slate-500">Loading trips...</div>
+          ) : bookings.length === 0 ? (
+            <div className="p-12 text-center">
+              <p className="text-5xl mb-3">🎟️</p>
+              <p className="text-slate-500 font-medium">No upcoming trips yet.</p>
+              <p className="text-slate-400 text-sm mt-1">Search for a bus above to book your first trip!</p>
+            </div>
+          ) : (
+            <div className="divide-y divide-slate-50">
+              {bookings.map((b) => (
+                <div key={b.id} className="p-6 hover:bg-slate-50 transition-colors">
+                  <div className="flex flex-col md:flex-row gap-4 justify-between">
+                    <div>
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="font-bold text-slate-800 text-lg">
+                          {b.bus_assignment_detail?.route_detail?.name}
+                        </span>
+                        <span className={`px-2 py-1 text-xs font-bold rounded-lg border ${
+                          b.payment_status === 'accepted' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
+                          b.payment_status === 'failed' ? 'bg-red-50 text-red-700 border-red-200' :
+                          'bg-amber-50 text-amber-700 border-amber-200'
+                        }`}>
+                          {b.payment_status.toUpperCase()}
+                        </span>
+                      </div>
+                      <p className="text-sm text-slate-600 font-medium mb-1">
+                        🚌 {b.bus_assignment_detail?.bus_detail?.bus_number} 
+                        ({b.bus_assignment_detail?.bus_detail?.is_ac ? 'AC' : 'Non-AC'})
+                      </p>
+                      <p className="text-sm text-slate-500">
+                        📅 {b.bus_assignment_detail?.date} • {formatTime(b.bus_assignment_detail?.departure_time)}
+                      </p>
+                    </div>
+                    <div className="text-left md:text-right">
+                      <p className="text-xs text-slate-400 font-semibold uppercase">Purchase ID</p>
+                      <p className="font-mono font-bold text-slate-700 mb-2">{b.purchase_id}</p>
+                      <p className="text-sm">
+                        <span className="font-semibold text-slate-600">{b.seat_count} Seats</span> • 
+                        <span className="font-bold text-emerald-600 ml-1">LKR {b.total_fare}</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
+      )}
+
+      {/* Booking Modal */}
+      {selectedBus && (
+        <BookingModal 
+          assignment={selectedBus}
+          onClose={() => setSelectedBus(null)}
+          onSuccess={(newBooking) => {
+            setSelectedBus(null);
+            setBookings([newBooking, ...bookings]);
+            setSearched(false); // Reset to show bookings view
+            setFrom(''); setTo(''); // Reset search
+            alert(`Booking successful! Your Purchase ID is ${newBooking.purchase_id}`);
+          }}
+        />
       )}
     </div>
   );

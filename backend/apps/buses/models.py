@@ -61,6 +61,14 @@ class BusAssignment(models.Model):
         related_name='reviewed_assignments'
     )
     reviewed_at = models.DateTimeField(null=True, blank=True)
+    # The assigned conductor for the trip
+    conductor = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True, blank=True,
+        related_name='assigned_trips',
+        limit_choices_to={'role': 'conductor'}
+    )
 
     class Meta:
         verbose_name = 'Bus Assignment'

@@ -11,6 +11,7 @@ const OperatorAssignBus = () => {
   const [buses, setBuses] = useState([]);
   const [routes, setRoutes] = useState([]);
   const [assignments, setAssignments] = useState([]);
+  const [conductors, setConductors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
@@ -18,20 +19,22 @@ const OperatorAssignBus = () => {
   const [editingAssignment, setEditingAssignment] = useState(null);
 
   const [form, setForm] = useState({
-    bus: '', route: '', departure_time: '', arrival_time: '', date: ''
+    bus: '', route: '', departure_time: '', arrival_time: '', date: '', conductor: ''
   });
 
   const fetchData = async () => {
     try {
       setLoading(true);
-      const [busRes, routeRes, assignRes] = await Promise.all([
+      const [busRes, routeRes, assignRes, condRes] = await Promise.all([
         axiosInstance.get('/buses/'),
         axiosInstance.get('/routes/'),
         axiosInstance.get('/buses/assignments/'),
+        axiosInstance.get('/auth/conductors/'),
       ]);
       setBuses(busRes.data.results || busRes.data);
       setRoutes(routeRes.data.results || routeRes.data);
       setAssignments(assignRes.data.results || assignRes.data);
+      setConductors(condRes.data.results || condRes.data);
     } catch {
       setError('Failed to load data.');
     } finally {
@@ -60,7 +63,7 @@ const OperatorAssignBus = () => {
         await axiosInstance.post('/buses/assignments/', form);
         setSuccess('Assignment submitted! Awaiting admin approval.');
       }
-      setForm({ bus: '', route: '', departure_time: '', arrival_time: '', date: '' });
+      setForm({ bus: '', route: '', departure_time: '', arrival_time: '', date: '', conductor: '' });
       setEditingAssignment(null);
       fetchData();
     } catch (err) {
@@ -78,6 +81,7 @@ const OperatorAssignBus = () => {
       departure_time: assignment.departure_time,
       arrival_time: assignment.arrival_time,
       date: assignment.date,
+      conductor: assignment.conductor || '',
     });
     setError(''); setSuccess('');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -96,7 +100,7 @@ const OperatorAssignBus = () => {
 
   const handleCancelEdit = () => {
     setEditingAssignment(null);
-    setForm({ bus: '', route: '', departure_time: '', arrival_time: '', date: '' });
+    setForm({ bus: '', route: '', departure_time: '', arrival_time: '', date: '', conductor: '' });
     setError(''); setSuccess('');
   };
 
@@ -216,6 +220,21 @@ const OperatorAssignBus = () => {
                   />
                 </div>
               </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">🧑‍✈️ Assign Conductor (Optional)</label>
+                <select
+                  name="conductor"
+                  value={form.conductor}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent text-slate-800 bg-slate-50 transition-all"
+                >
+                  <option value="">-- Leave Unassigned --</option>
+                  {conductors.map(c => (
+                    <option key={c.id} value={c.id}>{c.full_name} ({c.email})</option>
+                  ))}
+                </select>
+              </div>
             </div>
 
             {/* Preview Card */}
@@ -310,6 +329,10 @@ const OperatorAssignBus = () => {
                         <div>
                           <p className="text-slate-400 text-xs font-semibold uppercase tracking-wide">Arrival</p>
                           <p className="font-semibold text-slate-700 mt-0.5">{assignment.arrival_time}</p>
+                        </div>
+                        <div>
+                          <p className="text-slate-400 text-xs font-semibold uppercase tracking-wide">Conductor</p>
+                          <p className="font-semibold text-slate-700 mt-0.5">{assignment.conductor_name || 'Unassigned'}</p>
                         </div>
                       </div>
                     </div>

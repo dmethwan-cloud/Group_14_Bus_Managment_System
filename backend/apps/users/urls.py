@@ -15,6 +15,7 @@ from .views import (
     ForgotPasswordView,
     ResetPasswordView,
     ChangePasswordView,
+    ConductorListView,
 )
 
 urlpatterns = [
@@ -34,4 +35,7 @@ urlpatterns = [
     # Admin: user management
     path('users/', UserListView.as_view(), name='user-list'),
     path('users/<int:pk>/', UserDetailView.as_view(), name='user-detail'),
+    
+    # Operator/Admin: conductors list
+    path('conductors/', ConductorListView.as_view(), name='conductor-list'),
 ]
