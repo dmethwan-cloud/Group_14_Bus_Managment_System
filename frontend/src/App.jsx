@@ -23,7 +23,10 @@ import OperatorDashboard from './pages/dashboards/OperatorDashboard';
 import OperatorAddBus from './pages/dashboards/OperatorAddBus';
 import OperatorAssignBus from './pages/dashboards/OperatorAssignBus';
 import PassengerDashboard from './pages/dashboards/PassengerDashboard';
+import PassengerBookings from './pages/dashboards/PassengerBookings';
 import ConductorDashboard from './pages/dashboards/ConductorDashboard';
+import ConductorPassengers from './pages/dashboards/ConductorPassengers';
+import ConductorPaymentVerification from './pages/dashboards/ConductorPaymentVerification';
 
 // Shared Pages
 import ProfilePage from './pages/shared/ProfilePage';
@@ -49,10 +52,8 @@ function App() {
             <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="users" element={<AdminUsers />} />
-            <Route path="operators" element={<div className="p-4">Operator Approvals (Placeholder)</div>} />
             <Route path="routes" element={<AdminRoutes />} />
             <Route path="assign-approvals" element={<AdminAssignApprovals />} />
-            <Route path="bookings" element={<div className="p-4">All Bookings (Placeholder)</div>} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="change-password" element={<ChangePasswordPage />} />
           </Route>
@@ -65,7 +66,6 @@ function App() {
             <Route path="dashboard" element={<OperatorDashboard />} />
             <Route path="add-bus" element={<OperatorAddBus />} />
             <Route path="assign-buses" element={<OperatorAssignBus />} />
-            <Route path="passengers" element={<div className="p-4">Passenger Lists (Placeholder)</div>} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="change-password" element={<ChangePasswordPage />} />
           </Route>
@@ -76,8 +76,7 @@ function App() {
           <Route path="/passenger" element={<PassengerLayout />}>
             <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="dashboard" element={<PassengerDashboard />} />
-            <Route path="bookings" element={<div className="p-4">My Bookings (Placeholder)</div>} />
-            <Route path="tickets" element={<div className="p-4">My Tickets (Placeholder)</div>} />
+            <Route path="bookings" element={<PassengerBookings />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="change-password" element={<ChangePasswordPage />} />
           </Route>
@@ -88,27 +87,27 @@ function App() {
           <Route path="/conductor" element={<ConductorLayout />}>
             <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="dashboard" element={<ConductorDashboard />} />
-            <Route path="validate" element={<div className="p-4">Validate Tickets (Placeholder)</div>} />
-            <Route path="passengers" element={<div className="p-4">Passenger List (Placeholder)</div>} />
+            <Route path="payments" element={<ConductorPaymentVerification />} />
+            <Route path="passengers" element={<ConductorPassengers />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="change-password" element={<ChangePasswordPage />} />
           </Route>
         </Route>
 
         {/* Fallback Unauthorized Route */}
-        <Route 
-          path="/unauthorized" 
+        <Route
+          path="/unauthorized"
           element={
             <div className="flex h-screen items-center justify-center bg-slate-50">
               <div className="text-center card">
                 <h1 className="text-3xl font-bold text-red-600 mb-2">Access Denied</h1>
                 <p className="text-slate-600 mb-6">You do not have permission to view this page.</p>
-                <button onClick={() => window.location.href='/login'} className="btn-primary">Return to Login</button>
+                <button onClick={() => window.location.href = '/login'} className="btn-primary">Return to Login</button>
               </div>
             </div>
-          } 
+          }
         />
-        
+
         {/* Fallback 404 Route */}
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>

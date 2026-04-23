@@ -21,11 +21,11 @@ const LoginPage = () => {
     try {
       const response = await axiosInstance.post('/auth/login/', formData);
       const { access, refresh, user } = response.data;
-      
+
       // Store tokens and user details
       setTokens(access, refresh);
       setUser(user);
-      
+
       // Redirect based on role
       const redirectPath = getDashboardPath(user.role);
       navigate(redirectPath);
@@ -43,8 +43,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 glass-card">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
         <div>
           <h2 className="mt-2 text-center text-3xl font-extrabold text-slate-900">
             Welcome Back
@@ -53,14 +53,14 @@ const LoginPage = () => {
             Sign in to access the Smart Bus System
           </p>
         </div>
-        
+
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm" role="alert">
               {error}
             </div>
           )}
-          
+
           <div className="space-y-4">
             <div>
               <label htmlFor="email" className="input-label">Email address</label>
@@ -75,7 +75,7 @@ const LoginPage = () => {
                 onChange={handleChange}
               />
             </div>
-            
+
             <div>
               <div className="flex items-center justify-between">
                 <label htmlFor="password" className="input-label">Password</label>
@@ -106,12 +106,12 @@ const LoginPage = () => {
             </button>
           </div>
         </form>
-        
+
         <div className="text-center text-sm">
           <p className="text-slate-600">
             Don't have an account?{' '}
             <Link to="/register" className="font-medium text-primary-600 hover:text-primary-500">
-              Register as a Passenger
+              Register
             </Link>
           </p>
         </div>

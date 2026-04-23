@@ -33,34 +33,51 @@ const LandingPage = () => {
 
       {/* ── Hero Section ── */}
       <main className="flex-grow">
-        <section className="relative overflow-hidden bg-white pt-16 sm:pt-24 lg:pt-32 pb-16">
+        <section className="relative overflow-hidden bg-gradient-to-b from-white to-slate-50 pt-16 sm:pt-24 lg:pt-32 pb-16">
           <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
             <svg className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]" viewBox="0 0 1155 678" xmlns="http://www.w3.org/2000/svg">
-              <path fill="url(#4f4f41dd-1051-403d-82d2-8b2b7a8a1012)" fillOpacity=".3" d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z"/>
+              <path fill="url(#4f4f41dd-1051-403d-82d2-8b2b7a8a1012)" fillOpacity=".15" d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z" />
               <defs>
                 <linearGradient id="4f4f41dd-1051-403d-82d2-8b2b7a8a1012" x1="1155.49" x2="-78.208" y1=".177" y2="474.645" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#3b82f6"/>
-                  <stop offset="1" stopColor="#93c5fd"/>
+                  <stop stopColor="#3b82f6" />
+                  <stop offset="1" stopColor="#93c5fd" />
                 </linearGradient>
               </defs>
             </svg>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight mb-8">
-              Book your next journey <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-indigo-600">in seconds.</span>
-            </h1>
-            <p className="mt-4 max-w-2xl text-lg md:text-xl text-slate-500 mx-auto mb-10 leading-relaxed">
-              Experience the fastest, most reliable way to book bus tickets across the country. Choose your seat, pay securely, and board with ease.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/register" className="btn-primary py-4 px-8 text-lg rounded-xl shadow-xl shadow-primary-500/30">
-                Book a Ticket Now
-              </Link>
-              <Link to="/login" className="btn-secondary py-4 px-8 text-lg rounded-xl bg-white text-slate-700">
-                View My Bookings
-              </Link>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Text Content */}
+              <div className="text-left lg:text-left">
+                <h1 className="text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
+                  Book your next journey <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-indigo-600">in seconds.</span>
+                </h1>
+                <p className="mt-4 text-lg md:text-xl text-slate-600 mb-8 leading-relaxed">
+                  Experience the fastest, most reliable way to book bus tickets across the country. Choose your seat, pay securely, and board with ease.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link to="/register" className="btn-primary py-4 px-8 text-lg rounded-xl shadow-xl shadow-primary-500/30 text-center">
+                    Book a Ticket Now
+                  </Link>
+                  <Link to="/login" className="btn-secondary py-4 px-8 text-lg rounded-xl bg-white text-slate-700 border-2 border-slate-200 text-center">
+                    View My Bookings
+                  </Link>
+                </div>
+              </div>
+
+              {/* Hero Image */}
+              <div className="hidden lg:flex items-center justify-center">
+                <img
+                  src="/images/hero-bus.jpg"
+                  alt="Modern bus"
+                  className="w-full h-auto rounded-2xl shadow-2xl object-cover"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                  }}
+                />
+              </div>
             </div>
           </div>
         </section>

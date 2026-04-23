@@ -15,7 +15,7 @@ const PassengerDashboard = () => {
   const [searched, setSearched] = useState(false);
   const [searching, setSearching] = useState(false);
   const [loadingRoutes, setLoadingRoutes] = useState(true);
-  
+
   // Bookings state
   const [selectedBus, setSelectedBus] = useState(null);
   const [bookings, setBookings] = useState([]);
@@ -264,7 +264,7 @@ const PassengerDashboard = () => {
                         </span>
                       </div>
                     </div>
-                    <button 
+                    <button
                       onClick={() => setSelectedBus(bus)}
                       className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-xl transition-all shadow-sm hover:shadow-md"
                     >
@@ -284,7 +284,7 @@ const PassengerDashboard = () => {
           <div className="px-8 py-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
             <h3 className="text-lg font-bold text-slate-800">🗓️ Your Upcoming Trips</h3>
           </div>
-          
+
           {loadingBookings ? (
             <div className="p-8 text-center text-slate-500">Loading trips...</div>
           ) : bookings.length === 0 ? (
@@ -303,16 +303,15 @@ const PassengerDashboard = () => {
                         <span className="font-bold text-slate-800 text-lg">
                           {b.bus_assignment_detail?.route_detail?.name}
                         </span>
-                        <span className={`px-2 py-1 text-xs font-bold rounded-lg border ${
-                          b.payment_status === 'accepted' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
-                          b.payment_status === 'failed' ? 'bg-red-50 text-red-700 border-red-200' :
-                          'bg-amber-50 text-amber-700 border-amber-200'
-                        }`}>
-                          {b.payment_status.toUpperCase()}
+                        <span className={`px-2 py-1 text-xs font-bold rounded-lg border ${b.payment_status === 'accepted' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
+                            b.payment_status === 'failed' ? 'bg-red-50 text-red-700 border-red-200' :
+                              'bg-amber-50 text-amber-700 border-amber-200'
+                          }`}>
+                          {(b.payment_status || 'pending').toUpperCase()}
                         </span>
                       </div>
                       <p className="text-sm text-slate-600 font-medium mb-1">
-                        🚌 {b.bus_assignment_detail?.bus_detail?.bus_number} 
+                        🚌 {b.bus_assignment_detail?.bus_detail?.bus_number}
                         ({b.bus_assignment_detail?.bus_detail?.is_ac ? 'AC' : 'Non-AC'})
                       </p>
                       <p className="text-sm text-slate-500">
@@ -323,7 +322,7 @@ const PassengerDashboard = () => {
                       <p className="text-xs text-slate-400 font-semibold uppercase">Purchase ID</p>
                       <p className="font-mono font-bold text-slate-700 mb-2">{b.purchase_id}</p>
                       <p className="text-sm">
-                        <span className="font-semibold text-slate-600">{b.seat_count} Seats</span> • 
+                        <span className="font-semibold text-slate-600">{b.seat_count} Seats</span> •
                         <span className="font-bold text-emerald-600 ml-1">LKR {b.total_fare}</span>
                       </p>
                     </div>
@@ -337,7 +336,7 @@ const PassengerDashboard = () => {
 
       {/* Booking Modal */}
       {selectedBus && (
-        <BookingModal 
+        <BookingModal
           assignment={selectedBus}
           onClose={() => setSelectedBus(null)}
           onSuccess={(newBooking) => {

@@ -28,6 +28,7 @@ class Booking(models.Model):
     
     payment_reference = models.CharField(max_length=100, blank=True, null=True)
     payment_proof = models.FileField(upload_to='payment_proofs/', blank=True, null=True)
+    rejection_reason = models.TextField(blank=True, null=True)
     
     purchase_id = models.CharField(max_length=50, unique=True, editable=False)
     

@@ -16,7 +16,7 @@ from .serializers import (
     UserListSerializer, ForgotPasswordSerializer, ResetPasswordSerializer,
     ChangePasswordSerializer,
 )
-from apps.common.permissions import IsAdminUser
+from apps.common.permissions import IsAdminUser, IsAdminOrOperator
 from apps.common.email_utils import send_verification_email, send_password_reset_email
 from django.utils import timezone
 from datetime import timedelta
@@ -176,7 +176,6 @@ class ConductorListView(generics.ListAPIView):
     GET /api/auth/conductors/
     Admin and Operator — list all active conductors.
     """
-    from apps.common.permissions import IsAdminOrOperator
     permission_classes = [IsAuthenticated, IsAdminOrOperator]
     serializer_class = UserListSerializer
     
