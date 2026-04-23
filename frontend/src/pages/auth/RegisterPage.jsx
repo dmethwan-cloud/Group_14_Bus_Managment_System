@@ -36,9 +36,9 @@ const RegisterPage = () => {
       setTimeout(() => navigate(`/verify-email?email=${encodeURIComponent(formData.email)}`), 3500);
     } catch (err) {
       if (err.response && err.response.data) {
-         // Naive extraction of first error message
-         const errorList = Object.values(err.response.data).flat();
-         setError(errorList[0] || 'Registration failed.');
+        // Naive extraction of first error message
+        const errorList = Object.values(err.response.data).flat();
+        setError(errorList[0] || 'Registration failed.');
       } else {
         setError('A network error occurred. Please try again.');
       }
@@ -48,8 +48,8 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg border border-slate-100">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
         <div>
           <h2 className="mt-2 text-center text-3xl font-extrabold text-slate-900">
             Create an Account
@@ -58,7 +58,7 @@ const RegisterPage = () => {
             Join the Smart Bus E-Ticketing System
           </p>
         </div>
-        
+
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm" role="alert">
@@ -70,7 +70,7 @@ const RegisterPage = () => {
               {successMsg}
             </div>
           )}
-          
+
           <div className="space-y-4">
             <div>
               <label htmlFor="full_name" className="input-label">Full Name</label>
@@ -85,7 +85,7 @@ const RegisterPage = () => {
                 onChange={handleChange}
               />
             </div>
-            
+
             <div>
               <label htmlFor="email" className="input-label">Email Address</label>
               <input
@@ -115,7 +115,7 @@ const RegisterPage = () => {
               </select>
               <p className="text-xs text-slate-500 mt-1">Bus Operators and Conductors require Admin approval.</p>
             </div>
-            
+
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label htmlFor="password" className="input-label">Password</label>
@@ -158,7 +158,7 @@ const RegisterPage = () => {
             </button>
           </div>
         </form>
-        
+
         <div className="text-center text-sm">
           <p className="text-slate-600">
             Already have an account?{' '}

@@ -15,7 +15,7 @@ const axiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 10000, // 10 seconds
+  timeout: 30000, // 30 seconds
 });
 
 // ── Request interceptor: attach token ─────────────────────
@@ -38,7 +38,7 @@ axiosInstance.interceptors.response.use(
     // However, we MUST bypass this if the user is actively trying to log in,
     // otherwise a failed login (e.g. pending approval) will delete other valid sessions in localStorage.
     const isLoginEndpoint = error.config && error.config.url && error.config.url.includes('/auth/login/');
-    
+
     if (error.response?.status === 401 && !isLoginEndpoint) {
       logout();
     }

@@ -37,28 +37,51 @@ class IsAdminOrOperator(permissions.BasePermission):
 
 class BusListCreateView(generics.ListCreateAPIView):
     """
-    GET  — Operator sees their own buses.
+    GET  — Admin sees all buses. Operator sees only their own.
     POST — Operator adds a new bus.
     """
     serializer_class = BusSerializer
-    permission_classes = [IsOperatorUser]
+    permission_classes = [IsAdminOrOperator]
 
     def get_queryset(self):
+        if self.request.user.role == 'admin':
+            return Bus.objects.all()
         return Bus.objects.filter(operator=self.request.user)
 
     def perform_create(self, serializer):
+        # Only operators can create buses
+        if self.request.user.role != 'operator':
+            from rest_framework.exceptions import PermissionDenied
+            raise PermissionDenied("Only operators can add buses.")
         serializer.save(operator=self.request.user)
 
 
 class BusDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
+    Admin can view all buses (read-only).
     Operator can view, edit, delete their own buses only.
     """
     serializer_class = BusSerializer
-    permission_classes = [IsOperatorUser]
+    permission_classes = [IsAdminOrOperator]
 
     def get_queryset(self):
+        if self.request.user.role == 'admin':
+            return Bus.objects.all()
         return Bus.objects.filter(operator=self.request.user)
+
+    def perform_update(self, serializer):
+        # Only operators can edit buses
+        if self.request.user.role != 'operator':
+            from rest_framework.exceptions import PermissionDenied
+            raise PermissionDenied("Only operators can edit buses.")
+        serializer.save()
+
+    def perform_destroy(self, instance):
+        # Only operators can delete buses
+        if self.request.user.role != 'operator':
+            from rest_framework.exceptions import PermissionDenied
+            raise PermissionDenied("Only operators can delete buses.")
+        instance.delete()
 
 
 # ── Assignment Views ─────────────────────────────────────────────────────────
