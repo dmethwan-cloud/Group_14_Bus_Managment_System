@@ -108,6 +108,103 @@ const LandingPage = () => {
             </div>
           </div>
         </section>
+
+        {/* ── Our Services Section ── */}
+        <section className="py-24 relative z-10 bg-slate-900/40 backdrop-blur-md border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-20">
+              <h2 className="text-3xl md:text-4xl font-bold text-white drop-shadow-md">Our Services</h2>
+              <p className="mt-4 text-lg text-slate-300 drop-shadow max-w-2xl mx-auto">
+                We've built a comprehensive suite of tools to make your journey as smooth as possible from start to finish.
+              </p>
+            </div>
+
+            <div className="space-y-24">
+              {/* Service 1: Booking */}
+              <div className="flex flex-col lg:flex-row items-center gap-12">
+                <div className="lg:w-1/2">
+                  <div className="bg-gradient-to-br from-blue-500/30 to-cyan-500/30 p-1 rounded-3xl w-full max-w-md mx-auto transform hover:scale-105 transition-transform duration-500 shadow-2xl shadow-blue-500/20">
+                    <div className="bg-slate-900/90 backdrop-blur-xl p-6 md:p-8 rounded-[23px] border border-white/10 relative overflow-hidden">
+                       <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-500/20 blur-2xl rounded-full"></div>
+                       <div className="flex justify-between items-center border-b border-white/10 pb-5 mb-5">
+                          <div className="text-white font-bold text-lg">Colombo</div>
+                          <div className="text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full text-sm">Direct</div>
+                          <div className="text-white font-bold text-lg">Kandy</div>
+                       </div>
+                       <div className="flex justify-between items-center mb-8">
+                          <div className="text-slate-400 text-sm">Departure<br/><span className="text-white text-xl font-semibold">10:00 AM</span></div>
+                          <div className="text-slate-400 text-sm text-right">Seat<br/><span className="text-white text-xl font-semibold">14A</span></div>
+                       </div>
+                       <div className="w-full bg-blue-600 hover:bg-blue-500 transition-colors py-3.5 rounded-xl text-center text-white font-semibold shadow-lg shadow-blue-600/40 cursor-pointer">
+                          Confirm Booking
+                       </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="lg:w-1/2 text-left">
+                  <div className="inline-flex items-center justify-center w-14 h-14 bg-blue-500/20 rounded-2xl text-blue-400 mb-6 border border-blue-500/30">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-7 h-7">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-5">Seamless Ticket Booking</h3>
+                  <p className="text-slate-300 text-lg leading-relaxed mb-6">
+                    Search across hundreds of routes, compare prices, and book your preferred seat in seconds. Our interactive seat selection makes it incredibly easy to travel exactly how you want.
+                  </p>
+                  <ul className="space-y-3">
+                    <li className="flex items-center text-slate-300"><span className="text-blue-400 mr-3">✓</span> Interactive seat maps</li>
+                    <li className="flex items-center text-slate-300"><span className="text-blue-400 mr-3">✓</span> Instant email confirmations</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Service 2: Management */}
+              <div className="flex flex-col lg:flex-row-reverse items-center gap-12">
+                <div className="lg:w-1/2">
+                  <div className="bg-gradient-to-br from-purple-500/30 to-pink-500/30 p-1 rounded-3xl w-full max-w-md mx-auto transform hover:scale-105 transition-transform duration-500 shadow-2xl shadow-purple-500/20">
+                    <div className="bg-slate-900/90 backdrop-blur-xl p-6 md:p-8 rounded-[23px] border border-white/10 space-y-4 relative overflow-hidden">
+                       <div className="absolute bottom-0 left-0 -mb-4 -ml-4 w-24 h-24 bg-purple-500/20 blur-2xl rounded-full"></div>
+                       <h4 className="text-white font-bold text-lg mb-4">My Dashboard</h4>
+                       
+                       <div className="flex items-center p-4 bg-white/5 rounded-xl border border-white/5 hover:bg-white/10 transition-colors cursor-pointer">
+                          <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center text-green-400 mr-4 border border-green-500/30">✓</div>
+                          <div className="flex-grow">
+                            <div className="text-white font-semibold">Trip to Galle</div>
+                            <div className="text-slate-400 text-sm">Completed • Oct 12</div>
+                          </div>
+                          <div className="text-slate-500">→</div>
+                       </div>
+                       
+                       <div className="flex items-center p-4 bg-white/5 rounded-xl border border-white/5 hover:bg-white/10 transition-colors cursor-pointer">
+                          <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-400 mr-4 border border-purple-500/30">🕒</div>
+                          <div className="flex-grow">
+                            <div className="text-white font-semibold">Trip to Jaffna</div>
+                            <div className="text-slate-400 text-sm">Upcoming • Nov 24</div>
+                          </div>
+                          <div className="text-slate-500">→</div>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="lg:w-1/2 text-left">
+                  <div className="inline-flex items-center justify-center w-14 h-14 bg-purple-500/20 rounded-2xl text-purple-400 mb-6 border border-purple-500/30">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-7 h-7">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-5">Manage Your Bookings</h3>
+                  <p className="text-slate-300 text-lg leading-relaxed mb-6">
+                    Never lose track of a trip again. Your personalized dashboard keeps all your past and upcoming travels perfectly organized in one secure place.
+                  </p>
+                  <ul className="space-y-3">
+                    <li className="flex items-center text-slate-300"><span className="text-purple-400 mr-3">✓</span> View detailed itineraries</li>
+                    <li className="flex items-center text-slate-300"><span className="text-purple-400 mr-3">✓</span> Download e-tickets anytime</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* ── Footer ── */}
