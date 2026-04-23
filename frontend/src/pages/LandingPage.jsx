@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen flex flex-col font-sans bg-cover bg-center bg-fixed relative" style={{ backgroundImage: "url('/images/bus_home_bg.png')" }}>
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-slate-900/60 z-0 pointer-events-none"></div>
       {/* ── Navbar ── */}
-      <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
+      <header className="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20 items-center">
             {/* Logo */}
@@ -32,29 +34,17 @@ const LandingPage = () => {
       </header>
 
       {/* ── Hero Section ── */}
-      <main className="flex-grow">
-        <section className="relative overflow-hidden bg-gradient-to-b from-white to-slate-50 pt-16 sm:pt-24 lg:pt-32 pb-16">
-          <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
-            <svg className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]" viewBox="0 0 1155 678" xmlns="http://www.w3.org/2000/svg">
-              <path fill="url(#4f4f41dd-1051-403d-82d2-8b2b7a8a1012)" fillOpacity=".15" d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z" />
-              <defs>
-                <linearGradient id="4f4f41dd-1051-403d-82d2-8b2b7a8a1012" x1="1155.49" x2="-78.208" y1=".177" y2="474.645" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#3b82f6" />
-                  <stop offset="1" stopColor="#93c5fd" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-
+      <main className="flex-grow relative z-10">
+        <section className="relative pt-16 sm:pt-24 lg:pt-32 pb-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Text Content */}
               <div className="text-left lg:text-left">
-                <h1 className="text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
+                <h1 className="text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-6 drop-shadow-lg">
                   Book your next journey <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-indigo-600">in seconds.</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-indigo-400 drop-shadow-sm">in seconds.</span>
                 </h1>
-                <p className="mt-4 text-lg md:text-xl text-slate-600 mb-8 leading-relaxed">
+                <p className="mt-4 text-lg md:text-xl text-slate-200 mb-8 leading-relaxed drop-shadow">
                   Experience the fastest, most reliable way to book bus tickets across the country. Choose your seat, pay securely, and board with ease.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -83,11 +73,11 @@ const LandingPage = () => {
         </section>
 
         {/* ── Features Section ── */}
-        <section className="py-20 bg-slate-50">
+        <section className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-slate-900">Why choose SmartBus?</h2>
-              <p className="mt-4 text-slate-500">Everything you need for a comfortable and safe journey.</p>
+              <h2 className="text-3xl font-bold text-white drop-shadow-md">Why choose SmartBus?</h2>
+              <p className="mt-4 text-slate-200 drop-shadow">Everything you need for a comfortable and safe journey.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -130,7 +120,7 @@ const LandingPage = () => {
       </main>
 
       {/* ── Footer ── */}
-      <footer className="bg-slate-900 text-slate-400 py-12 text-center text-sm border-t border-slate-800">
+      <footer className="bg-slate-900/80 backdrop-blur-md text-slate-400 py-12 text-center text-sm border-t border-slate-800 relative z-10">
         <p>© 2026 Smart Bus E-Ticketing System — Group 14 Project. All rights reserved.</p>
       </footer>
     </div>
