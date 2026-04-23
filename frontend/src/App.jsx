@@ -7,6 +7,7 @@ import RegisterPage from './pages/auth/RegisterPage';
 import VerifyEmailPage from './pages/auth/VerifyEmailPage';
 import LandingPage from './pages/LandingPage';
 import ForgotPasswordPage from './pages/auth/ForgotPasswordPage';
+import AboutUsPage from './pages/AboutUsPage';
 
 // Layouts
 import AdminLayout from './layouts/AdminLayout';
@@ -45,6 +46,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/verify-email" element={<VerifyEmailPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/about-us" element={<AboutUsPage />} />
 
         {/* ── Protected Admin Routes ── */}
         <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
