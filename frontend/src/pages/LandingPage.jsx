@@ -64,47 +64,46 @@ const LandingPage = () => {
           </div>
         </section>
 
+
         {/* ── Features Section ── */}
-        <section className="py-20">
+        <section className="py-12 relative z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-white drop-shadow-md">Why choose SmartBus?</h2>
-              <p className="mt-4 text-slate-200 drop-shadow">Everything you need for a comfortable and safe journey.</p>
+              <h2 className="text-3xl font-bold text-white drop-shadow-md">Why SmartBus?</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Feature 1 */}
-              <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-primary-600 mb-6">
+              <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-white/20 hover:-translate-y-2 hover:bg-white/20 transition-all duration-300">
+                <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-300 mb-6 shadow-inner border border-blue-500/30">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-slate-800 mb-3">Live Tracking</h3>
-                <p className="text-slate-500 leading-relaxed">Know exactly where your bus is and when it will arrive at your stop in real-time.</p>
+                <h3 className="text-xl font-bold text-white mb-3 drop-shadow-sm">Fast and Easy Bookings</h3>
+                <p className="text-slate-300 leading-relaxed">Book your bus tickets in just a few clicks. Our streamlined process saves you time and hassle.</p>
               </div>
 
               {/* Feature 2 */}
-              <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-green-600 mb-6">
+              <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-white/20 hover:-translate-y-2 hover:bg-white/20 transition-all duration-300">
+                <div className="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-300 mb-6 shadow-inner border border-indigo-500/30">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 drop-shadow-sm">Search Routes</h3>
+                <p className="text-slate-300 leading-relaxed">Easily find buses for your preferred destinations. View schedules, availability, and route details instantly.</p>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-white/20 hover:-translate-y-2 hover:bg-white/20 transition-all duration-300">
+                <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center text-purple-300 mb-6 shadow-inner border border-purple-500/30">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-slate-800 mb-3">Instant Confirmation</h3>
-                <p className="text-slate-500 leading-relaxed">Receive your e-ticket immediately via email. No need to print paper tickets ever again.</p>
-              </div>
-
-              {/* Feature 3 */}
-              <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 mb-6">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-slate-800 mb-3">Secure Payments</h3>
-                <p className="text-slate-500 leading-relaxed">Your transactions are protected with industry-leading encryption and security standards.</p>
+                <h3 className="text-xl font-bold text-white mb-3 drop-shadow-sm">Secure E-Tickets</h3>
+                <p className="text-slate-300 leading-relaxed">Your tickets are safely stored digitally. Simply show your e-ticket on your mobile device when boarding.</p>
               </div>
             </div>
           </div>
