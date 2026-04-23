@@ -26,7 +26,7 @@ import PassengerDashboard from './pages/dashboards/PassengerDashboard';
 import PassengerBookings from './pages/dashboards/PassengerBookings';
 import ConductorDashboard from './pages/dashboards/ConductorDashboard';
 import ConductorPassengers from './pages/dashboards/ConductorPassengers';
-import ConductorPaymentVerification from './pages/dashboards/ConductorPaymentVerification';
+import ConductorPaymentVerification from './pages/dashboards/ConductorPaymentVerfication';
 
 // Shared Pages
 import ProfilePage from './pages/shared/ProfilePage';
