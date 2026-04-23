@@ -47,14 +47,6 @@ const LandingPage = () => {
                 <p className="mt-4 text-lg md:text-xl text-slate-200 mb-8 leading-relaxed drop-shadow">
                   Experience the fastest, most reliable way to book bus tickets across the country. Choose your seat, pay securely, and board with ease.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Link to="/register" className="btn-primary py-4 px-8 text-lg rounded-xl shadow-xl shadow-primary-500/30 text-center">
-                    Book a Ticket Now
-                  </Link>
-                  <Link to="/login" className="btn-secondary py-4 px-8 text-lg rounded-xl bg-white text-slate-700 border-2 border-slate-200 text-center">
-                    View My Bookings
-                  </Link>
-                </div>
               </div>
 
               {/* Hero Image */}
