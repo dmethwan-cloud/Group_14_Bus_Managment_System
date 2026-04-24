@@ -43,10 +43,10 @@ const ChangePasswordPage = () => {
     <div className="max-w-2xl mx-auto space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-slate-800">Change Password</h2>
-        <p className="text-slate-500">Ensure your account is using a long, random password to stay secure.</p>
+        <p className="text-slate-700">Ensure your account is using a long, random password to stay secure.</p>
       </div>
 
-      <div className="card">
+      <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 p-8">
         {message.text && (
           <div className={`mb-6 p-4 rounded-lg text-sm ${message.type === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
             {message.text}

@@ -98,15 +98,15 @@ const PassengerDashboard = () => {
   return (
     <div className="space-y-6 max-w-5xl mx-auto">
       {/* Hero */}
-      <div className="bg-gradient-to-r from-emerald-600 to-teal-600 p-8 rounded-2xl text-white shadow-lg">
+      <div className="bg-gradient-to-r from-emerald-600/90 to-teal-600/90 backdrop-blur-md p-8 rounded-2xl text-white shadow-xl border border-emerald-400/20">
         <h2 className="text-3xl font-bold mb-1">Hello, {user?.full_name?.split(' ')[0] || 'Traveler'}! 🚍</h2>
         <p className="text-emerald-100">Search available buses and plan your journey.</p>
       </div>
 
       {/* Search Card */}
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
+      <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 p-8">
         <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-          <span className="w-9 h-9 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center">🔍</span>
+          <span className="w-9 h-9 bg-emerald-100/80 text-emerald-700 rounded-xl flex items-center justify-center shadow-sm">🔍</span>
           Search for a Bus
         </h3>
 
@@ -118,7 +118,7 @@ const PassengerDashboard = () => {
               <select
                 value={from}
                 onChange={handleFromChange}
-                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-slate-800 bg-slate-50 transition-all"
+                className="w-full px-4 py-3 border border-slate-200/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-slate-800 bg-white/70 backdrop-blur-sm transition-all"
                 required
                 disabled={loadingRoutes}
               >
@@ -135,7 +135,7 @@ const PassengerDashboard = () => {
               <select
                 value={to}
                 onChange={(e) => { setTo(e.target.value); setResults([]); setSearched(false); }}
-                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-slate-800 bg-slate-50 transition-all"
+                className="w-full px-4 py-3 border border-slate-200/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-slate-800 bg-white/70 backdrop-blur-sm transition-all"
                 required
                 disabled={!from || loadingRoutes}
               >
@@ -154,7 +154,7 @@ const PassengerDashboard = () => {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 min={new Date().toISOString().split('T')[0]}
-                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-slate-800 bg-slate-50 transition-all"
+                className="w-full px-4 py-3 border border-slate-200/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-slate-800 bg-white/70 backdrop-blur-sm transition-all"
               />
             </div>
           </div>
@@ -188,15 +188,15 @@ const PassengerDashboard = () => {
           </div>
 
           {searching ? (
-            <div className="bg-white rounded-2xl p-12 text-center shadow-sm border border-slate-100">
+            <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-12 text-center shadow-xl border border-white/40">
               <div className="w-10 h-10 border-4 border-emerald-200 border-t-emerald-600 rounded-full animate-spin mx-auto mb-4" />
-              <p className="text-slate-500">Finding available buses...</p>
+              <p className="text-slate-700 font-medium">Finding available buses...</p>
             </div>
           ) : results.length === 0 ? (
-            <div className="bg-white rounded-2xl p-12 text-center shadow-sm border border-slate-100">
+            <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-12 text-center shadow-xl border border-white/40">
               <p className="text-5xl mb-4">🚌</p>
-              <p className="text-slate-600 font-semibold text-lg">No buses available</p>
-              <p className="text-slate-400 text-sm mt-2">
+              <p className="text-slate-800 font-bold text-lg">No buses available</p>
+              <p className="text-slate-600 text-sm mt-2">
                 No approved buses found for <strong>{from} → {to}</strong>
                 {date ? ` on ${date}` : ''}. Try a different date or route.
               </p>
@@ -205,7 +205,7 @@ const PassengerDashboard = () => {
             results.map((bus) => (
               <div
                 key={bus.id}
-                className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all overflow-hidden"
+                className="bg-white/95 backdrop-blur-xl rounded-2xl border border-white/50 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all overflow-hidden"
               >
                 {/* Bus Card Header */}
                 <div className={`px-6 py-3 flex items-center gap-3 ${bus.bus_detail?.is_ac ? 'bg-blue-600' : 'bg-orange-500'}`}>
@@ -280,8 +280,8 @@ const PassengerDashboard = () => {
 
       {/* Upcoming Trips */}
       {!searched && (
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-          <div className="px-8 py-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+        <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 overflow-hidden">
+          <div className="px-8 py-5 border-b border-white/30 flex items-center justify-between bg-white/40">
             <h3 className="text-lg font-bold text-slate-800">🗓️ Your Upcoming Trips</h3>
           </div>
 
@@ -294,9 +294,9 @@ const PassengerDashboard = () => {
               <p className="text-slate-400 text-sm mt-1">Search for a bus above to book your first trip!</p>
             </div>
           ) : (
-            <div className="divide-y divide-slate-50">
+            <div className="divide-y divide-slate-200/50">
               {bookings.map((b) => (
-                <div key={b.id} className="p-6 hover:bg-slate-50 transition-colors">
+                <div key={b.id} className="p-6 hover:bg-white/60 transition-colors">
                   <div className="flex flex-col md:flex-row gap-4 justify-between">
                     <div>
                       <div className="flex items-center gap-3 mb-2">

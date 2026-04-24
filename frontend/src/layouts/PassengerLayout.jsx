@@ -46,20 +46,25 @@ const PassengerLayout = () => {
         </div>
       </aside>
 
-      <main className="flex-1 flex flex-col overflow-hidden">
-        <header className="h-16 bg-white shadow-sm flex items-center justify-between px-8 z-10 border-b border-slate-200">
+      <main 
+        className="flex-1 flex flex-col overflow-hidden bg-cover bg-center bg-no-repeat relative"
+        style={{ backgroundImage: "url('/images/bus_home_bg.png')" }}
+      >
+        <div className="absolute inset-0 bg-slate-900/40 z-0 pointer-events-none"></div>
+        
+        <header className="h-16 bg-white/80 backdrop-blur-md shadow-sm flex items-center justify-between px-8 z-10 border-b border-white/20">
           <h2 className="text-xl font-semibold text-slate-800">Passenger Dashboard</h2>
           <div className="flex items-center gap-4">
             <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm">
               {user?.full_name?.charAt(0).toUpperCase() || 'P'}
             </div>
-            <span className="text-sm font-medium text-slate-600">
+            <span className="text-sm font-medium text-slate-800">
               {user?.full_name || 'Passenger'}
             </span>
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto p-8">
+        <div className="flex-1 overflow-y-auto p-8 z-10 relative">
           <Outlet />
         </div>
       </main>

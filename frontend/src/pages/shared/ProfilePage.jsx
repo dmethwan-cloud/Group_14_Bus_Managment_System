@@ -38,10 +38,10 @@ const ProfilePage = () => {
     <div className="max-w-3xl mx-auto space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-slate-800">My Profile</h2>
-        <p className="text-slate-500">Manage your account information</p>
+        <p className="text-slate-700">Manage your account information</p>
       </div>
 
-      <div className="card">
+      <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 p-8">
         {message.text && (
           <div className={`mb-6 p-4 rounded-lg text-sm ${message.type === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
             {message.text}
