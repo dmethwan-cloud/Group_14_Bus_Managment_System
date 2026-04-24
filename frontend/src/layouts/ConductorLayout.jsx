@@ -17,6 +17,8 @@ const ConductorLayout = () => {
     { name: 'Change Password', path: '/conductor/change-password', icon: 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z' },
   ];
 
+  const hasBg = ['/conductor/dashboard', '/conductor/payments', '/conductor/passengers', '/conductor/profile'].includes(location.pathname);
+
   return (
     <div className="flex h-screen bg-slate-50">
       <aside className="sidebar text-slate-300">
@@ -48,12 +50,12 @@ const ConductorLayout = () => {
       </aside>
 
       <main 
-        className={`flex-1 flex flex-col overflow-hidden ${['/conductor/dashboard', '/conductor/payments', '/conductor/passengers'].includes(location.pathname) ? 'bg-cover bg-center bg-no-repeat relative' : ''}`}
-        style={['/conductor/dashboard', '/conductor/payments', '/conductor/passengers'].includes(location.pathname) ? { backgroundImage: "url('/images/bus_home_bg.png')" } : {}}
+        className={`flex-1 flex flex-col overflow-hidden ${hasBg ? 'bg-cover bg-center bg-no-repeat relative' : ''}`}
+        style={hasBg ? { backgroundImage: "url('/images/bus_home_bg.png')" } : {}}
       >
-        {['/conductor/dashboard', '/conductor/payments', '/conductor/passengers'].includes(location.pathname) && <div className="absolute inset-0 bg-slate-900/40 z-0 pointer-events-none"></div>}
+        {hasBg && <div className="absolute inset-0 bg-slate-900/40 z-0 pointer-events-none"></div>}
 
-        <header className={`h-16 flex items-center justify-between px-8 z-10 border-b ${['/conductor/dashboard', '/conductor/payments', '/conductor/passengers'].includes(location.pathname) ? 'bg-white/80 backdrop-blur-md shadow-sm border-white/20' : 'bg-white shadow-sm border-slate-200'}`}>
+        <header className={`h-16 flex items-center justify-between px-8 z-10 border-b ${hasBg ? 'bg-white/80 backdrop-blur-md shadow-sm border-white/20' : 'bg-white shadow-sm border-slate-200'}`}>
           <h2 className="text-xl font-semibold text-slate-800">Conductor Dashboard</h2>
           <div className="flex items-center gap-4">
             <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-sm">
@@ -65,7 +67,7 @@ const ConductorLayout = () => {
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto p-8 z-10 relative">
+        <div className={`flex-1 overflow-y-auto p-8 z-10 relative ${hasBg ? 'text-white' : 'text-slate-800'}`}>
           <Outlet />
         </div>
       </main>

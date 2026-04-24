@@ -37,8 +37,8 @@ const ProfilePage = () => {
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-slate-800">My Profile</h2>
-        <p className="text-slate-700">Manage your account information</p>
+        <h2 className="text-2xl font-bold drop-shadow-sm">My Profile</h2>
+        <p className="opacity-80">Manage your account information</p>
       </div>
 
       <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 p-8">

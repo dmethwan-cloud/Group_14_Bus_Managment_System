@@ -64,7 +64,7 @@ const PassengerLayout = () => {
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto p-8 z-10 relative">
+        <div className="flex-1 overflow-y-auto p-8 z-10 relative text-white">
           <Outlet />
         </div>
       </main>
