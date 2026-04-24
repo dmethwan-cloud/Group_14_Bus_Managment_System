@@ -90,7 +90,16 @@ const PassengerBookings = () => {
 
     if (selectedBooking) {
         return (
-            <div className="space-y-6 max-w-4xl mx-auto">
+            <>
+              <style>
+                {`
+                  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+                  .font-custom-passenger {
+                    font-family: 'Plus Jakarta Sans', sans-serif;
+                  }
+                `}
+              </style>
+              <div className="space-y-6 max-w-4xl mx-auto font-custom-passenger">
                 <button
                     onClick={() => setSelectedBooking(null)}
                     className="text-emerald-600 hover:text-emerald-700 font-bold flex items-center gap-2 mb-4"
@@ -207,11 +216,21 @@ const PassengerBookings = () => {
                     </div>
                 </div>
             </div>
+            </>
         );
     }
 
     return (
-        <div className="space-y-6 max-w-6xl mx-auto">
+        <>
+            <style>
+              {`
+                @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+                .font-custom-passenger {
+                  font-family: 'Plus Jakarta Sans', sans-serif;
+                }
+              `}
+            </style>
+            <div className="space-y-6 max-w-6xl mx-auto font-custom-passenger">
             {/* Header */}
             <div className="bg-gradient-to-r from-emerald-500/90 to-teal-600/90 backdrop-blur-md p-8 rounded-2xl text-white shadow-xl border border-emerald-400/20">
                 <h2 className="text-3xl font-bold mb-2">My Bookings</h2>
@@ -339,6 +358,7 @@ const PassengerBookings = () => {
                 </div>
             )}
         </div>
+        </>
     );
 };
 
