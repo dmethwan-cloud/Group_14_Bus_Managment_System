@@ -55,7 +55,7 @@ const LandingPage = () => {
               <div className="text-left lg:text-left">
                 <h1 className="text-5xl md:text-6xl font-black text-white tracking-tighter mb-6 drop-shadow-lg">
                   Book your next journey <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-indigo-400 drop-shadow-sm">in seconds.</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-indigo-400 to-purple-400 drop-shadow-sm">in seconds.</span>
                 </h1>
                 <p className="mt-4 text-lg md:text-xl text-slate-200 mb-8 leading-relaxed drop-shadow">
                   Experience the fastest, most reliable way to book bus tickets across the country. Choose your seat, pay securely, and board with ease.
