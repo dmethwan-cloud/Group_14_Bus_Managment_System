@@ -3,7 +3,16 @@ import { Link } from 'react-router-dom';
 
 const AboutUsPage = () => {
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-cover bg-center bg-fixed relative" style={{ backgroundImage: "url('/images/about_us_bus.png')" }}>
+    <>
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+          .font-custom-about {
+            font-family: 'Outfit', sans-serif;
+          }
+        `}
+      </style>
+      <div className="min-h-screen flex flex-col font-custom-about bg-cover bg-center bg-fixed relative" style={{ backgroundImage: "url('/images/about_us_bus.png')" }}>
       {/* Dark overlay for readability */}
       <div className="absolute inset-0 bg-slate-900/80 z-0 pointer-events-none"></div>
 
@@ -98,6 +107,7 @@ const AboutUsPage = () => {
         <p>© 2026 Smart Bus E-Ticketing System — Group 14 Project. All rights reserved.</p>
       </footer>
     </div>
+    </>
   );
 };
 
