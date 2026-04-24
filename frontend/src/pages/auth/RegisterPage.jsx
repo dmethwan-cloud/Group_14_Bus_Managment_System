@@ -79,7 +79,7 @@ const RegisterPage = () => {
 
             {/* Auth Buttons */}
             <div className="flex items-center gap-6">
-              <Link to="/about" className="text-slate-600 font-semibold text-sm hover:text-primary-600 transition-colors">
+              <Link to="/about-us" className="text-slate-600 font-semibold text-sm hover:text-primary-600 transition-colors">
                 About Us
               </Link>
               <div className="h-6 w-px bg-slate-300 hidden sm:block"></div>
