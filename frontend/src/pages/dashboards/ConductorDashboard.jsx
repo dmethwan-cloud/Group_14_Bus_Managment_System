@@ -50,7 +50,16 @@ const ConductorDashboard = () => {
 
   if (selectedTrip) {
     return (
-      <div className="space-y-6 max-w-5xl mx-auto animate-fade-in-up">
+      <>
+        <style>
+          {`
+            @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+            .font-custom-conductor {
+              font-family: 'Plus Jakarta Sans', sans-serif;
+            }
+          `}
+        </style>
+      <div className="space-y-6 max-w-5xl mx-auto animate-fade-in-up font-custom-conductor">
         <button 
           onClick={() => setSelectedTrip(null)}
           className="text-amber-600 hover:text-amber-700 font-bold flex items-center gap-2 mb-4"
@@ -108,11 +117,21 @@ const ConductorDashboard = () => {
           </div>
         )}
       </div>
+      </>
     );
   }
 
   return (
-    <div className="space-y-6 max-w-5xl mx-auto">
+    <>
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+          .font-custom-conductor {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+          }
+        `}
+      </style>
+    <div className="space-y-6 max-w-5xl mx-auto font-custom-conductor">
       <div className="bg-gradient-to-r from-amber-500/90 to-orange-600/90 backdrop-blur-md p-8 rounded-2xl text-white shadow-xl border border-amber-400/20">
         <h2 className="text-3xl font-bold mb-2">Welcome aboard, {user?.full_name?.split(' ')[0] || 'Conductor'}! 🎫</h2>
         <p className="text-amber-100">Ready for today's journey? Here's your schedule.</p>
@@ -168,6 +187,7 @@ const ConductorDashboard = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 
