@@ -42,8 +42,8 @@ const ChangePasswordPage = () => {
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-slate-800">Change Password</h2>
-        <p className="text-slate-700">Ensure your account is using a long, random password to stay secure.</p>
+        <h2 className="text-2xl font-bold drop-shadow-sm">Change Password</h2>
+        <p className="opacity-80">Ensure your account is using a long, random password to stay secure.</p>
       </div>
 
       <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 p-8">
