@@ -232,7 +232,7 @@ const PassengerDashboard = () => {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {/* Route */}
                     <div>
-                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-wide mb-1">Route</p>
+                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-widest mb-1">Route</p>
                       <p className="font-semibold text-slate-800 text-sm">
                         {bus.route_detail?.origin}
                         <span className="text-slate-400 mx-1">→</span>
@@ -242,17 +242,17 @@ const PassengerDashboard = () => {
 
                     {/* Date */}
                     <div>
-                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-wide mb-1">Date</p>
+                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-widest mb-1">Date</p>
                       <p className="font-semibold text-slate-800 text-sm">📅 {bus.date}</p>
                     </div>
 
                     {/* Times */}
                     <div>
-                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-wide mb-1">Departure</p>
+                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-widest mb-1">Departure</p>
                       <p className="font-bold text-emerald-700 text-sm">🕐 {formatTime(bus.departure_time)}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-wide mb-1">Arrival</p>
+                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-widest mb-1">Arrival</p>
                       <p className="font-bold text-blue-700 text-sm">🕑 {formatTime(bus.arrival_time)}</p>
                     </div>
                   </div>
@@ -328,7 +328,7 @@ const PassengerDashboard = () => {
                       </p>
                     </div>
                     <div className="text-left md:text-right">
-                      <p className="text-xs text-slate-400 font-semibold uppercase">Purchase ID</p>
+                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-widest">Purchase ID</p>
                       <p className="font-mono font-bold text-slate-700 mb-2">{b.purchase_id}</p>
                       <p className="text-sm">
                         <span className="font-semibold text-slate-600">{b.seat_count} Seats</span> •

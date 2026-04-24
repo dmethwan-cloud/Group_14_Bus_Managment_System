@@ -125,11 +125,11 @@ const PassengerBookings = () => {
                     <h3 className="text-xl font-bold text-slate-800 mb-4">🚌 Trip Information</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <p className="text-sm text-slate-500 font-semibold uppercase">Route</p>
+                            <p className="text-sm text-slate-500 font-semibold uppercase tracking-widest">Route</p>
                             <p className="text-xl font-bold text-slate-800 mt-1">{selectedBooking.bus_assignment_detail?.route_detail?.name}</p>
                         </div>
                         <div>
-                            <p className="text-sm text-slate-500 font-semibold uppercase">Bus</p>
+                            <p className="text-sm text-slate-500 font-semibold uppercase tracking-widest">Bus</p>
                             <p className="text-xl font-bold text-slate-800 mt-1">
                                 {selectedBooking.bus_assignment_detail?.bus_detail?.bus_number}
                                 <span className="text-sm text-slate-500 ml-2">
@@ -138,11 +138,11 @@ const PassengerBookings = () => {
                             </p>
                         </div>
                         <div>
-                            <p className="text-sm text-slate-500 font-semibold uppercase">Date</p>
+                            <p className="text-sm text-slate-500 font-semibold uppercase tracking-widest">Date</p>
                             <p className="text-xl font-bold text-slate-800 mt-1">📅 {selectedBooking.bus_assignment_detail?.date}</p>
                         </div>
                         <div>
-                            <p className="text-sm text-slate-500 font-semibold uppercase">Departure Time</p>
+                            <p className="text-sm text-slate-500 font-semibold uppercase tracking-widest">Departure Time</p>
                             <p className="text-xl font-bold text-slate-800 mt-1">🕐 {formatTime(selectedBooking.bus_assignment_detail?.departure_time)}</p>
                         </div>
                     </div>
@@ -153,15 +153,15 @@ const PassengerBookings = () => {
                     <h3 className="text-xl font-bold text-slate-800 mb-4">🎫 Booking Details</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div className="bg-white/50 backdrop-blur-sm border border-white/40 p-4 rounded-xl shadow-sm">
-                            <p className="text-sm text-slate-600 font-semibold uppercase">Seats Booked</p>
+                            <p className="text-sm text-slate-600 font-semibold uppercase tracking-widest">Seats Booked</p>
                             <p className="text-3xl font-bold text-emerald-600 mt-2">{selectedBooking.seat_count}</p>
                         </div>
                         <div className="bg-white/50 backdrop-blur-sm border border-white/40 p-4 rounded-xl shadow-sm">
-                            <p className="text-sm text-slate-600 font-semibold uppercase">Total Fare</p>
+                            <p className="text-sm text-slate-600 font-semibold uppercase tracking-widest">Total Fare</p>
                             <p className="text-3xl font-bold text-blue-600 mt-2">LKR {parseFloat(selectedBooking.total_fare).toFixed(2)}</p>
                         </div>
                         <div className="bg-white/50 backdrop-blur-sm border border-white/40 p-4 rounded-xl shadow-sm">
-                            <p className="text-sm text-slate-600 font-semibold uppercase">Payment Method</p>
+                            <p className="text-sm text-slate-600 font-semibold uppercase tracking-widest">Payment Method</p>
                             <p className="text-2xl font-bold text-slate-800 mt-2 capitalize">
                                 {selectedBooking.payment_method === 'cash' ? '💵 Cash' : '💳 Online'}
                             </p>
@@ -174,20 +174,20 @@ const PassengerBookings = () => {
                     <h3 className="text-xl font-bold text-slate-800 mb-4">💰 Payment Information</h3>
                     <div className="space-y-4">
                         <div>
-                            <p className="text-sm text-slate-500 font-semibold uppercase">Status</p>
+                            <p className="text-sm text-slate-500 font-semibold uppercase tracking-widest">Status</p>
                             <p className={`mt-1 inline-block px-3 py-1 rounded-lg font-bold text-sm border ${getStatusColor(selectedBooking.payment_status)}`}>
                                 {(selectedBooking.payment_status || 'pending').toUpperCase()}
                             </p>
                         </div>
                         {selectedBooking.payment_method === 'online' && selectedBooking.payment_reference && (
                             <div>
-                                <p className="text-sm text-slate-500 font-semibold uppercase">Transaction Reference</p>
+                                <p className="text-sm text-slate-500 font-semibold uppercase tracking-widest">Transaction Reference</p>
                                 <p className="font-mono font-bold text-slate-700 mt-1">{selectedBooking.payment_reference}</p>
                             </div>
                         )}
                         {selectedBooking.payment_proof && (
                             <div>
-                                <p className="text-sm text-slate-500 font-semibold uppercase">Payment Proof</p>
+                                <p className="text-sm text-slate-500 font-semibold uppercase tracking-widest">Payment Proof</p>
                                 <a
                                     href={selectedBooking.payment_proof}
                                     target="_blank"
@@ -338,11 +338,11 @@ const PassengerBookings = () => {
 
                                 <div className="flex flex-col md:text-right gap-2">
                                     <div>
-                                        <p className="text-xs text-slate-500 font-semibold uppercase">Seats</p>
+                                        <p className="text-xs text-slate-500 font-semibold uppercase tracking-widest">Seats</p>
                                         <p className="text-2xl font-bold text-slate-800">{booking.seat_count}</p>
                                     </div>
                                     <div>
-                                        <p className="text-xs text-slate-500 font-semibold uppercase">Total</p>
+                                        <p className="text-xs text-slate-500 font-semibold uppercase tracking-widest">Total</p>
                                         <p className="text-2xl font-bold text-emerald-600">LKR {parseFloat(booking.total_fare).toFixed(2)}</p>
                                     </div>
                                 </div>
