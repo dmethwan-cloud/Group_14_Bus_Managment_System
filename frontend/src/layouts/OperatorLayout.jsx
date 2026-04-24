@@ -9,6 +9,8 @@ const OperatorLayout = () => {
 
   const handleLogout = () => logout();
 
+  const hasBackground = ['/operator', '/operator/dashboard', '/operator/add-bus'].includes(location.pathname);
+
   const navLinks = [
     { name: 'Dashboard', path: '/operator/dashboard', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
     { name: 'Add Bus', path: '/operator/add-bus', icon: 'M12 4v16m8-8H4' },
@@ -61,11 +63,11 @@ const OperatorLayout = () => {
         </header>
 
         <div className={`flex-1 overflow-y-auto relative ${
-          (location.pathname === '/operator/dashboard' || location.pathname === '/operator')
+          hasBackground
             ? 'bg-[url("https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop")] bg-cover bg-center bg-fixed'
             : 'bg-slate-50'
         }`}>
-          {(location.pathname === '/operator/dashboard' || location.pathname === '/operator') && (
+          {hasBackground && (
             <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm z-0"></div>
           )}
           <div className="relative z-10 p-8 h-full">
