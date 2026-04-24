@@ -53,12 +53,12 @@ const RegisterPage = () => {
       style={{ backgroundImage: "url('/images/bus_home_bg.png')" }}
     >
       <div className="absolute inset-0 bg-slate-900/40 z-0 pointer-events-none"></div>
-      <div className="max-w-md w-full space-y-8 bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-slate-100 relative z-10">
+      <div className="auth-card">
         <div>
-          <h2 className="mt-2 text-center text-3xl font-extrabold text-slate-900">
+          <h2 className="auth-title">
             Create an Account
           </h2>
-          <p className="mt-2 text-center text-sm text-slate-600">
+          <p className="auth-subtitle">
             Join the Smart Bus E-Ticketing System
           </p>
         </div>
@@ -77,13 +77,13 @@ const RegisterPage = () => {
 
           <div className="space-y-4">
             <div>
-              <label htmlFor="full_name" className="input-label">Full Name</label>
+              <label htmlFor="full_name" className="auth-label">Full Name</label>
               <input
                 id="full_name"
                 name="full_name"
                 type="text"
                 required
-                className="input-field"
+                className="auth-input"
                 placeholder="John Doe"
                 value={formData.full_name}
                 onChange={handleChange}
@@ -91,13 +91,13 @@ const RegisterPage = () => {
             </div>
 
             <div>
-              <label htmlFor="email" className="input-label">Email Address</label>
+              <label htmlFor="email" className="auth-label">Email Address</label>
               <input
                 id="email"
                 name="email"
                 type="email"
                 required
-                className="input-field"
+                className="auth-input"
                 placeholder="passenger@example.com"
                 value={formData.email}
                 onChange={handleChange}
@@ -105,11 +105,11 @@ const RegisterPage = () => {
             </div>
 
             <div>
-              <label htmlFor="role" className="input-label">Account Type</label>
+              <label htmlFor="role" className="auth-label">Account Type</label>
               <select
                 id="role"
                 name="role"
-                className="input-field"
+                className="auth-input"
                 value={formData.role}
                 onChange={handleChange}
               >
@@ -117,33 +117,33 @@ const RegisterPage = () => {
                 <option value="operator">Bus Operator</option>
                 <option value="conductor">Conductor</option>
               </select>
-              <p className="text-xs text-slate-500 mt-1">Bus Operators and Conductors require Admin approval.</p>
+              <p className="text-xs text-slate-400 mt-1">Bus Operators and Conductors require Admin approval.</p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label htmlFor="password" className="input-label">Password</label>
+                <label htmlFor="password" className="auth-label">Password</label>
                 <input
                   id="password"
                   name="password"
                   type="password"
                   required
                   autoComplete="new-password"
-                  className="input-field"
+                  className="auth-input"
                   placeholder="••••••••"
                   value={formData.password}
                   onChange={handleChange}
                 />
               </div>
               <div>
-                <label htmlFor="password2" className="input-label">Confirm</label>
+                <label htmlFor="password2" className="auth-label">Confirm</label>
                 <input
                   id="password2"
                   name="password2"
                   type="password"
                   required
                   autoComplete="new-password"
-                  className="input-field"
+                  className="auth-input"
                   placeholder="••••••••"
                   value={formData.password2}
                   onChange={handleChange}
@@ -164,9 +164,9 @@ const RegisterPage = () => {
         </form>
 
         <div className="text-center text-sm">
-          <p className="text-slate-600">
+          <p className="text-slate-200">
             Already have an account?{' '}
-            <Link to="/login" className="font-medium text-primary-600 hover:text-primary-500">
+            <Link to="/login" className="font-medium text-primary-400 hover:text-primary-300">
               Sign In Here
             </Link>
           </p>

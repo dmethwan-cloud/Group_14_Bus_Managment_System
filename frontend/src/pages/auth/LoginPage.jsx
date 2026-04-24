@@ -49,12 +49,12 @@ const LoginPage = () => {
       style={{ backgroundImage: "url('/images/bus_home_bg.png')" }}
     >
       <div className="absolute inset-0 bg-slate-900/40 z-0 pointer-events-none"></div>
-      <div className="max-w-md w-full space-y-8 bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-slate-100 relative z-10">
+      <div className="auth-card">
         <div>
-          <h2 className="mt-2 text-center text-3xl font-extrabold text-slate-900">
+          <h2 className="auth-title">
             Welcome Back
           </h2>
-          <p className="mt-2 text-center text-sm text-slate-600">
+          <p className="auth-subtitle">
             Sign in to access the Smart Bus System
           </p>
         </div>
@@ -68,13 +68,13 @@ const LoginPage = () => {
 
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="input-label">Email address</label>
+              <label htmlFor="email" className="auth-label">Email address</label>
               <input
                 id="email"
                 name="email"
                 type="email"
                 required
-                className="input-field"
+                className="auth-input"
                 placeholder="passenger@example.com"
                 value={formData.email}
                 onChange={handleChange}
@@ -83,8 +83,8 @@ const LoginPage = () => {
 
             <div>
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="input-label">Password</label>
-                <Link to="/forgot-password" className="text-sm font-medium text-primary-600 hover:text-primary-500 mb-1.5">
+                <label htmlFor="password" className="auth-label">Password</label>
+                <Link to="/forgot-password" className="text-sm font-medium text-primary-400 hover:text-primary-300 mb-1.5">
                   Forgot Password?
                 </Link>
               </div>
@@ -94,14 +94,14 @@ const LoginPage = () => {
                   name="password"
                   type={showPassword ? "text" : "password"}
                   required
-                  className="input-field pr-10"
+                  className="auth-input pr-10"
                   placeholder="••••••••"
                   value={formData.password}
                   onChange={handleChange}
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 text-gray-500 hover:text-gray-700 focus:outline-none"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 text-slate-400 hover:text-white focus:outline-none"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
@@ -131,9 +131,9 @@ const LoginPage = () => {
         </form>
 
         <div className="text-center text-sm">
-          <p className="text-slate-600">
+          <p className="text-slate-200">
             Don't have an account?{' '}
-            <Link to="/register" className="font-medium text-primary-600 hover:text-primary-500">
+            <Link to="/register" className="font-medium text-primary-400 hover:text-primary-300">
               Register
             </Link>
           </p>

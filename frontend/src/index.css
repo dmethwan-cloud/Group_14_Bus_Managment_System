@@ -62,6 +62,35 @@
     @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl p-8;
   }
   
+  /* Auth Glassmorphism */
+  .auth-card {
+    @apply max-w-md w-full space-y-8 bg-white/10 backdrop-blur-xl p-8 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] border border-white/20 relative z-10;
+  }
+  
+  .auth-title {
+    @apply mt-2 text-center text-3xl font-extrabold text-white tracking-tight;
+  }
+  
+  .auth-subtitle {
+    @apply mt-2 text-center text-sm text-slate-200;
+  }
+  
+  .auth-label {
+    @apply block text-sm font-medium text-slate-200 mb-1.5;
+  }
+  
+  .auth-input {
+    @apply w-full px-4 py-2.5 border border-white/20 rounded-xl text-sm
+           bg-white/10 text-white placeholder-slate-300
+           focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent
+           transition-all duration-200 backdrop-blur-sm;
+  }
+
+  /* Option styles for select dropdown in dark theme */
+  .auth-input option {
+    @apply bg-slate-800 text-white;
+  }
+  
   .gradient-bg {
     @apply bg-gradient-to-br from-primary-600 to-indigo-900;
   }
