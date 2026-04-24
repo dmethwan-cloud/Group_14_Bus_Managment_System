@@ -60,8 +60,17 @@ const OperatorLayout = () => {
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto p-8">
-          <Outlet />
+        <div className={`flex-1 overflow-y-auto relative ${
+          (location.pathname === '/operator/dashboard' || location.pathname === '/operator')
+            ? 'bg-[url("https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop")] bg-cover bg-center bg-fixed'
+            : 'bg-slate-50'
+        }`}>
+          {(location.pathname === '/operator/dashboard' || location.pathname === '/operator') && (
+            <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm z-0"></div>
+          )}
+          <div className="relative z-10 p-8 h-full">
+            <Outlet />
+          </div>
         </div>
       </main>
     </div>
