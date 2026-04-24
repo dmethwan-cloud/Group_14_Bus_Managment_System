@@ -214,7 +214,7 @@ const PassengerDashboard = () => {
             results.map((bus) => (
               <div
                 key={bus.id}
-                className="bg-white/95 backdrop-blur-xl rounded-2xl border border-white/50 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all overflow-hidden"
+                className="group relative bg-white/90 backdrop-blur-xl rounded-2xl border border-white/50 shadow-lg hover:shadow-[0_8px_30px_rgba(139,92,246,0.3)] hover:border-violet-500/80 hover:scale-[1.02] transition-all duration-300 overflow-hidden"
               >
                 {/* Bus Card Header */}
                 <div className={`px-6 py-3 flex items-center gap-3 ${bus.bus_detail?.is_ac ? 'bg-blue-600' : 'bg-orange-500'}`}>
@@ -273,13 +273,18 @@ const PassengerDashboard = () => {
                         </span>
                       </div>
                     </div>
-                    <button
-                      onClick={() => setSelectedBus(bus)}
-                      className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-xl transition-all shadow-sm hover:shadow-md"
-                    >
-                      Book Now →
-                    </button>
+                    {/* The static button is removed in favor of the sliding overlay button */}
                   </div>
+                </div>
+
+                {/* Sliding "Select Seat" Button */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-violet-900 via-violet-800/95 to-violet-800/90 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] flex justify-center border-t border-violet-500/50 shadow-[0_-10px_20px_rgba(139,92,246,0.2)]">
+                  <button
+                    onClick={() => setSelectedBus(bus)}
+                    className="w-full px-8 py-3 bg-white hover:bg-violet-50 text-violet-800 text-sm font-bold uppercase tracking-wider rounded-xl transition-all shadow-xl hover:shadow-violet-500/30 flex items-center justify-center gap-2 hover:scale-[1.02]"
+                  >
+                    Select Seat <span className="text-lg">💺</span>
+                  </button>
                 </div>
               </div>
             ))
