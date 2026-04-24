@@ -6,6 +6,7 @@ const OperatorLayout = () => {
   const user = getUser();
   const navigate = useNavigate();
   const location = useLocation();
+  const [hoveredIndex, setHoveredIndex] = React.useState(null);
 
   const handleLogout = () => logout();
 
@@ -19,25 +20,45 @@ const OperatorLayout = () => {
     { name: 'Change Password', path: '/operator/change-password', icon: 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z' },
   ];
 
+  const activeIndex = navLinks.findIndex(link => location.pathname.startsWith(link.path));
+
   return (
     <div className="flex h-screen bg-slate-50">
       <aside className="sidebar text-slate-300">
         <div className="sidebar-header">
           <h1 className="text-xl font-bold text-white tracking-wide">SmartTicket <span className="text-blue-500">Operator</span></h1>
         </div>
-        <nav className="flex-1 p-4 overflow-y-auto">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`sidebar-link ${location.pathname.startsWith(link.path) ? 'sidebar-link-active !border-blue-500 text-blue-400 bg-blue-500/10' : ''}`}
-            >
-              <svg className="sidebar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={link.icon} />
-              </svg>
-              {link.name}
-            </Link>
-          ))}
+        <nav 
+          className="flex-1 p-4 overflow-y-auto relative"
+          onMouseLeave={() => setHoveredIndex(null)}
+        >
+          {/* Magnetic Hover Pill */}
+          <div
+            className="absolute left-4 right-4 top-4 h-[44px] bg-gradient-to-r from-blue-600/20 to-transparent border border-blue-500/20 rounded-xl transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] z-0 pointer-events-none"
+            style={{
+              transform: `translateY(${(hoveredIndex !== null ? hoveredIndex : Math.max(0, activeIndex)) * 48}px)`,
+              opacity: (hoveredIndex === null && activeIndex === -1) ? 0 : 1,
+            }}
+          />
+
+          {navLinks.map((link, index) => {
+            const isActive = location.pathname.startsWith(link.path);
+            return (
+              <Link
+                key={link.path}
+                to={link.path}
+                onMouseEnter={() => setHoveredIndex(index)}
+                className={`sidebar-link relative z-10 !bg-transparent !border-transparent ${
+                  isActive ? 'text-blue-400 font-bold' : 'hover:!text-white'
+                }`}
+              >
+                <svg className="sidebar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={link.icon} />
+                </svg>
+                {link.name}
+              </Link>
+            );
+          })}
         </nav>
         <div className="p-4 border-t border-white/10">
           <button onClick={handleLogout} className="flex items-center gap-3 px-4 py-3 w-full rounded-lg text-sm font-medium text-red-400 hover:bg-red-500/10 transition-all duration-200">
