@@ -13,8 +13,8 @@ const AboutUsPage = () => {
         `}
       </style>
       <div className="min-h-screen flex flex-col font-custom-about bg-cover bg-center bg-fixed relative" style={{ backgroundImage: "url('/images/about_us_bus.png')" }}>
-      {/* Dark overlay for readability */}
-      <div className="absolute inset-0 bg-slate-900/80 z-0 pointer-events-none"></div>
+      {/* Dark gradient overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-slate-900/30 z-0 pointer-events-none"></div>
 
       {/* ── Navbar ── */}
       <header className="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200 relative z-20">

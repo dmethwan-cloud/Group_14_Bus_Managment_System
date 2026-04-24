@@ -57,7 +57,7 @@ const LoginPage = () => {
         className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-cover bg-center bg-no-repeat relative font-custom-auth"
         style={{ backgroundImage: "url('/images/bus_home_bg.png')" }}
       >
-      <div className="absolute inset-0 bg-slate-900/40 z-0 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent z-0 pointer-events-none"></div>
       <div className="auth-card">
         <div>
           <h2 className="auth-title">

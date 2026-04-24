@@ -13,8 +13,8 @@ const LandingPage = () => {
         `}
       </style>
       <div className="min-h-screen flex flex-col font-custom-home bg-cover bg-center bg-fixed relative" style={{ backgroundImage: "url('/images/bus_home_bg.png')" }}>
-      {/* Dark overlay for readability */}
-      <div className="absolute inset-0 bg-slate-900/60 z-0 pointer-events-none"></div>
+      {/* Dark gradient overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent z-0 pointer-events-none"></div>
       {/* ── Navbar ── */}
       <header className="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,7 +87,7 @@ const LandingPage = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Feature 1 */}
-              <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-white/20 hover:-translate-y-2 hover:bg-white/20 transition-all duration-300">
+              <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-white/20 hover:-translate-y-2 hover:bg-white/20 hover:shadow-[0_10px_40px_rgba(59,130,246,0.3)] transition-all duration-300">
                 <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-300 mb-6 shadow-inner border border-blue-500/30">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5" />
@@ -98,7 +98,7 @@ const LandingPage = () => {
               </div>
 
               {/* Feature 2 */}
-              <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-white/20 hover:-translate-y-2 hover:bg-white/20 transition-all duration-300">
+              <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-white/20 hover:-translate-y-2 hover:bg-white/20 hover:shadow-[0_10px_40px_rgba(99,102,241,0.3)] transition-all duration-300">
                 <div className="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-300 mb-6 shadow-inner border border-indigo-500/30">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -109,7 +109,7 @@ const LandingPage = () => {
               </div>
 
               {/* Feature 3 */}
-              <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-white/20 hover:-translate-y-2 hover:bg-white/20 transition-all duration-300">
+              <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-white/20 hover:-translate-y-2 hover:bg-white/20 hover:shadow-[0_10px_40px_rgba(168,85,247,0.3)] transition-all duration-300">
                 <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center text-purple-300 mb-6 shadow-inner border border-purple-500/30">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
