@@ -87,28 +87,28 @@ const ConductorPassengers = () => {
 
     return (
         <div className="space-y-6 max-w-7xl mx-auto">
-            <div className="bg-gradient-to-r from-blue-500 to-cyan-600 p-8 rounded-2xl text-white shadow-lg">
+            <div className="bg-gradient-to-r from-blue-500/90 to-cyan-600/90 backdrop-blur-md p-8 rounded-2xl text-white shadow-xl border border-blue-400/20">
                 <h2 className="text-3xl font-bold mb-2">👥 All Passengers</h2>
                 <p className="text-blue-100">View all passengers across your assigned trips</p>
             </div>
 
             {/* Statistics */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="bg-white p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-white/90 backdrop-blur-xl p-4 rounded-xl shadow-xl border border-white/40 text-center">
                     <p className="text-sm text-slate-500">Total Trips</p>
                     <p className="text-3xl font-bold text-slate-800">{trips.length}</p>
                 </div>
-                <div className="bg-white p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-white/90 backdrop-blur-xl p-4 rounded-xl shadow-xl border border-white/40 text-center">
                     <p className="text-sm text-slate-500">Total Passengers</p>
                     <p className="text-3xl font-bold text-blue-600">{allPassengers.length}</p>
                 </div>
-                <div className="bg-white p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-white/90 backdrop-blur-xl p-4 rounded-xl shadow-xl border border-white/40 text-center">
                     <p className="text-sm text-slate-500">Total Seats Booked</p>
                     <p className="text-3xl font-bold text-purple-600">
                         {allPassengers.reduce((sum, p) => sum + p.seat_count, 0)}
                     </p>
                 </div>
-                <div className="bg-white p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-white/90 backdrop-blur-xl p-4 rounded-xl shadow-xl border border-white/40 text-center">
                     <p className="text-sm text-slate-500">Total Revenue</p>
                     <p className="text-3xl font-bold text-emerald-600">
                         LKR {allPassengers.reduce((sum, p) => sum + parseFloat(p.total_fare || 0), 0).toFixed(2)}
@@ -117,7 +117,7 @@ const ConductorPassengers = () => {
             </div>
 
             {/* Filters and Search */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 space-y-4">
+            <div className="bg-white/90 backdrop-blur-xl p-6 rounded-2xl shadow-xl border border-white/40 space-y-4">
                 <div>
                     <label className="block text-sm font-bold text-slate-700 mb-2">🔍 Search Passengers</label>
                     <input
@@ -135,7 +135,7 @@ const ConductorPassengers = () => {
                         <select
                             value={selectedTrip || ''}
                             onChange={(e) => setSelectedTrip(e.target.value ? parseInt(e.target.value) : null)}
-                            className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                            className="w-full px-4 py-3 border border-slate-200/60 bg-white/70 backdrop-blur-sm rounded-xl focus:ring-2 focus:ring-blue-400 focus:outline-none"
                         >
                             <option value="">All Trips</option>
                             {trips.map(trip => (
@@ -151,7 +151,7 @@ const ConductorPassengers = () => {
                         <select
                             value={sortBy}
                             onChange={(e) => setSortBy(e.target.value)}
-                            className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                            className="w-full px-4 py-3 border border-slate-200/60 bg-white/70 backdrop-blur-sm rounded-xl focus:ring-2 focus:ring-blue-400 focus:outline-none"
                         >
                             <option value="date">Latest Trips First</option>
                             <option value="name">Passenger Name (A-Z)</option>
@@ -163,18 +163,18 @@ const ConductorPassengers = () => {
 
             {/* Passengers List */}
             {loadingTrips || loadingPassengers ? (
-                <div className="text-center p-12 text-slate-500">Loading passengers...</div>
+                <div className="text-center p-12 text-slate-200">Loading passengers...</div>
             ) : filteredPassengers.length === 0 ? (
-                <div className="bg-white p-12 rounded-2xl shadow-sm border border-slate-100 text-center">
+                <div className="bg-white/90 backdrop-blur-xl p-12 rounded-2xl shadow-xl border border-white/40 text-center">
                     <p className="text-5xl mb-3">🪑</p>
-                    <p className="text-slate-500 font-medium">No passengers found.</p>
-                    {searchQuery && <p className="text-slate-400 text-sm mt-1">Try adjusting your search criteria.</p>}
+                    <p className="text-slate-800 font-bold text-lg">No passengers found.</p>
+                    {searchQuery && <p className="text-slate-600 text-sm mt-1">Try adjusting your search criteria.</p>}
                 </div>
             ) : (
-                <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 overflow-hidden">
                     <div className="overflow-x-auto">
                         <table className="w-full text-left">
-                            <thead className="bg-slate-50 border-b border-slate-100">
+                            <thead className="bg-white/40 border-b border-white/40">
                                 <tr>
                                     <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Purchase ID</th>
                                     <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Passenger Name</th>
@@ -186,9 +186,9 @@ const ConductorPassengers = () => {
                                     <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Status</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-slate-50">
+                            <tbody className="divide-y divide-slate-200/50">
                                 {filteredPassengers.map(p => (
-                                    <tr key={p.id} className="hover:bg-slate-50 transition-colors">
+                                    <tr key={p.id} className="hover:bg-white/60 transition-colors">
                                         <td className="px-6 py-4 font-mono font-bold text-slate-700">{p.purchase_id}</td>
                                         <td className="px-6 py-4">
                                             <p className="font-bold text-slate-800">{p.user_detail?.full_name}</p>
