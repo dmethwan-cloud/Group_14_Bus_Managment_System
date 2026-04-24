@@ -44,10 +44,19 @@ const LoginPage = () => {
   };
 
   return (
-    <div 
-      className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-cover bg-center bg-no-repeat relative"
-      style={{ backgroundImage: "url('/images/bus_home_bg.png')" }}
-    >
+    <>
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+          .font-custom-auth {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+          }
+        `}
+      </style>
+      <div 
+        className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-cover bg-center bg-no-repeat relative font-custom-auth"
+        style={{ backgroundImage: "url('/images/bus_home_bg.png')" }}
+      >
       <div className="absolute inset-0 bg-slate-900/40 z-0 pointer-events-none"></div>
       <div className="auth-card">
         <div>
@@ -140,6 +149,7 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
