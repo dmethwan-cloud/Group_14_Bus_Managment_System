@@ -58,11 +58,11 @@
 
   /* Cards */
   .card {
-    @apply bg-white rounded-xl shadow-sm border border-slate-200 p-6 transition-all duration-300 hover:shadow-md;
+    @apply bg-white rounded-xl shadow-sm border border-slate-200 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary-200;
   }
   
   .glass-card {
-    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl p-8;
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-white/90;
   }
   
   /* Auth Glassmorphism */
