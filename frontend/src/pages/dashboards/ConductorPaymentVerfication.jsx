@@ -107,31 +107,31 @@ const ConductorPaymentVerification = () => {
                         setSelectedBooking(null);
                         setVerificationReason('');
                     }}
-                    className="text-blue-600 hover:text-blue-700 font-bold flex items-center gap-2 mb-4"
+                    className="text-white hover:text-blue-200 drop-shadow-md font-bold flex items-center gap-2 mb-4"
                 >
                     ← Back to Pending Payments
                 </button>
 
                 {/* Booking Card */}
-                <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl border-2 border-blue-200 p-8 shadow-lg">
+                <div className="bg-white/90 backdrop-blur-xl rounded-2xl border border-white/40 p-8 shadow-xl">
                     {/* Header */}
-                    <div className="mb-6 pb-6 border-b-2 border-dashed border-blue-300">
+                    <div className="mb-6 pb-6 border-b-2 border-dashed border-slate-300/50">
                         <h2 className="text-2xl font-bold text-slate-800 mb-1">💳 Payment Verification</h2>
-                        <p className="text-slate-500 font-mono text-sm">
-                            Booking ID: <span className="font-bold text-blue-600">{selectedBooking.purchase_id}</span>
+                        <p className="text-slate-600 font-mono text-sm">
+                            Booking ID: <span className="font-bold text-blue-700">{selectedBooking.purchase_id}</span>
                         </p>
                     </div>
 
                     {/* Passenger Info */}
-                    <div className="bg-white rounded-xl p-4 mb-6 border border-blue-200">
-                        <p className="text-xs text-slate-500 font-semibold uppercase mb-1">Passenger</p>
+                    <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 mb-6 border border-white/40 shadow-sm">
+                        <p className="text-xs text-slate-600 font-semibold uppercase mb-1">Passenger</p>
                         <p className="text-lg font-bold text-slate-800">{selectedBooking.passenger_name}</p>
-                        <p className="text-sm text-slate-500 font-mono">{selectedBooking.passenger_email}</p>
+                        <p className="text-sm text-slate-600 font-mono">{selectedBooking.passenger_email}</p>
                     </div>
 
                     {/* Trip Info */}
-                    <div className="bg-white rounded-xl p-6 mb-6 border border-blue-200">
-                        <h3 className="text-sm font-bold text-slate-500 uppercase mb-4">Trip Details</h3>
+                    <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 mb-6 border border-white/40 shadow-sm">
+                        <h3 className="text-sm font-bold text-slate-600 uppercase mb-4">Trip Details</h3>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                             <div>
                                 <p className="text-xs text-slate-500 uppercase font-semibold">Route</p>
@@ -153,8 +153,8 @@ const ConductorPaymentVerification = () => {
                     </div>
 
                     {/* Booking Details */}
-                    <div className="bg-white rounded-xl p-6 mb-6 border border-blue-200">
-                        <h3 className="text-sm font-bold text-slate-500 uppercase mb-4">Booking Details</h3>
+                    <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 mb-6 border border-white/40 shadow-sm">
+                        <h3 className="text-sm font-bold text-slate-600 uppercase mb-4">Booking Details</h3>
                         <div className="grid grid-cols-3 gap-4">
                             <div>
                                 <p className="text-xs text-slate-500 uppercase font-semibold">Seats</p>
@@ -174,7 +174,7 @@ const ConductorPaymentVerification = () => {
                     {/* Payment Method & Verification */}
                     {selectedBooking.payment_method === 'cash' ? (
                         // Cash Payment Verification
-                        <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-6 mb-6">
+                        <div className="bg-amber-50/80 backdrop-blur-sm border-2 border-amber-300/50 rounded-xl p-6 mb-6 shadow-sm">
                             <h3 className="text-lg font-bold text-amber-900 mb-4">💵 Cash Payment</h3>
                             <p className="text-amber-800 mb-4">
                                 The passenger paid <span className="font-bold text-lg">LKR {parseFloat(selectedBooking.total_fare).toFixed(2)}</span> in cash.
@@ -186,7 +186,7 @@ const ConductorPaymentVerification = () => {
                         </div>
                     ) : (
                         // Online Payment Verification
-                        <div className="bg-emerald-50 border-2 border-emerald-200 rounded-xl p-6 mb-6">
+                        <div className="bg-emerald-50/80 backdrop-blur-sm border-2 border-emerald-300/50 rounded-xl p-6 mb-6 shadow-sm">
                             <h3 className="text-lg font-bold text-emerald-900 mb-4">💳 Online Payment Proof</h3>
                             {selectedBooking.payment_reference && (
                                 <div className="mb-4">
@@ -215,7 +215,7 @@ const ConductorPaymentVerification = () => {
                     )}
 
                     {/* Rejection Reason */}
-                    <div className="bg-white rounded-xl p-6 mb-6 border border-slate-200">
+                    <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 mb-6 border border-white/40 shadow-sm">
                         <label className="block text-sm font-bold text-slate-700 mb-3">
                             Rejection Reason (if rejecting):
                         </label>
@@ -223,7 +223,7 @@ const ConductorPaymentVerification = () => {
                             value={verificationReason}
                             onChange={(e) => setVerificationReason(e.target.value)}
                             placeholder="Enter reason for rejection (e.g., 'Incomplete payment', 'Invalid proof', 'Passenger not present')"
-                            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none resize-none"
+                            className="w-full px-4 py-3 border border-slate-300/50 bg-white/70 backdrop-blur-sm rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none resize-none"
                             rows="3"
                         />
                     </div>
@@ -253,30 +253,30 @@ const ConductorPaymentVerification = () => {
     return (
         <div className="space-y-6 max-w-6xl mx-auto">
             {/* Header */}
-            <div className="bg-gradient-to-r from-blue-500 to-cyan-600 p-8 rounded-2xl text-white shadow-lg">
+            <div className="bg-gradient-to-r from-blue-500/90 to-cyan-600/90 backdrop-blur-md p-8 rounded-2xl text-white shadow-xl border border-blue-400/20">
                 <h2 className="text-3xl font-bold mb-2">💳 Payment Verification</h2>
                 <p className="text-blue-100">Review and verify passenger payments (cash & online)</p>
             </div>
 
             {/* Statistics */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="bg-white p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-white/90 backdrop-blur-xl p-4 rounded-xl shadow-xl border border-white/40 text-center">
                     <p className="text-sm text-slate-500">Pending</p>
                     <p className="text-3xl font-bold text-amber-600 mt-2">{bookings.length}</p>
                 </div>
-                <div className="bg-white p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-white/90 backdrop-blur-xl p-4 rounded-xl shadow-xl border border-white/40 text-center">
                     <p className="text-sm text-slate-500">Cash</p>
                     <p className="text-3xl font-bold text-orange-600 mt-2">
                         {bookings.filter(b => b.payment_method === 'cash').length}
                     </p>
                 </div>
-                <div className="bg-white p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-white/90 backdrop-blur-xl p-4 rounded-xl shadow-xl border border-white/40 text-center">
                     <p className="text-sm text-slate-500">Online</p>
                     <p className="text-3xl font-bold text-green-600 mt-2">
                         {bookings.filter(b => b.payment_method === 'online').length}
                     </p>
                 </div>
-                <div className="bg-white p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-white/90 backdrop-blur-xl p-4 rounded-xl shadow-xl border border-white/40 text-center">
                     <p className="text-sm text-slate-500">Total Amount</p>
                     <p className="text-3xl font-bold text-blue-600 mt-2">
                         LKR {bookings.reduce((sum, b) => sum + parseFloat(b.total_fare || 0), 0).toFixed(2)}
@@ -285,7 +285,7 @@ const ConductorPaymentVerification = () => {
             </div>
 
             {/* Filters */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 space-y-4">
+            <div className="bg-white/90 backdrop-blur-xl p-6 rounded-2xl shadow-xl border border-white/40 space-y-4">
                 <div>
                     <label className="block text-sm font-bold text-slate-700 mb-2">🔍 Search Bookings</label>
                     <input
@@ -293,7 +293,7 @@ const ConductorPaymentVerification = () => {
                         placeholder="Search by Booking ID, Passenger Name, or Email..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                        className="w-full px-4 py-3 border border-slate-200/60 bg-white/70 backdrop-blur-sm rounded-xl focus:ring-2 focus:ring-blue-400 focus:outline-none"
                     />
                 </div>
 
@@ -305,8 +305,8 @@ const ConductorPaymentVerification = () => {
                                 key={method}
                                 onClick={() => setFilterPaymentMethod(method)}
                                 className={`px-4 py-2 rounded-lg font-bold transition-all ${filterPaymentMethod === method
-                                        ? 'bg-blue-600 text-white'
-                                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                        ? 'bg-blue-600 text-white shadow-md'
+                                        : 'bg-white/60 backdrop-blur-sm border border-white/50 text-slate-800 hover:bg-white/90 shadow-sm'
                                     }`}
                             >
                                 {method === 'all' ? 'All' : method === 'cash' ? '💵 Cash' : '💳 Online'}
@@ -318,12 +318,12 @@ const ConductorPaymentVerification = () => {
 
             {/* Bookings List */}
             {loading ? (
-                <div className="text-center p-12 text-slate-500">Loading pending payments...</div>
+                <div className="text-center p-12 text-slate-200">Loading pending payments...</div>
             ) : filteredBookings.length === 0 ? (
-                <div className="bg-white p-12 rounded-2xl shadow-sm border border-slate-100 text-center">
+                <div className="bg-white/90 backdrop-blur-xl p-12 rounded-2xl shadow-xl border border-white/40 text-center">
                     <p className="text-5xl mb-3">✓</p>
-                    <p className="text-slate-500 font-medium">All payments verified!</p>
-                    <p className="text-slate-400 text-sm mt-1">There are no pending payments to review.</p>
+                    <p className="text-slate-800 font-bold text-lg">All payments verified!</p>
+                    <p className="text-slate-600 text-sm mt-1">There are no pending payments to review.</p>
                 </div>
             ) : (
                 <div className="space-y-4">
@@ -331,7 +331,7 @@ const ConductorPaymentVerification = () => {
                         <div
                             key={booking.id}
                             onClick={() => setSelectedBooking(booking)}
-                            className="bg-white p-6 rounded-xl border border-slate-100 hover:shadow-lg hover:border-blue-200 transition-all cursor-pointer"
+                            className="bg-white/90 backdrop-blur-xl p-6 rounded-xl border border-white/40 shadow-md hover:shadow-xl hover:border-blue-300 transition-all cursor-pointer"
                         >
                             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                                 <div className="flex-1">
