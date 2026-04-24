@@ -67,7 +67,16 @@ const ConductorValidate = () => {
 
     if (!selectedTrip) {
         return (
-            <div className="space-y-6 max-w-5xl mx-auto">
+            <>
+                <style>
+                  {`
+                    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+                    .font-custom-conductor {
+                      font-family: 'Plus Jakarta Sans', sans-serif;
+                    }
+                  `}
+                </style>
+            <div className="space-y-6 max-w-5xl mx-auto font-custom-conductor">
                 <div className="bg-gradient-to-r from-purple-500 to-pink-600 p-8 rounded-2xl text-white shadow-lg">
                     <h2 className="text-3xl font-bold mb-2">🎫 Ticket Validation</h2>
                     <p className="text-purple-100">Select a trip to validate passenger tickets</p>
@@ -110,11 +119,21 @@ const ConductorValidate = () => {
                     </div>
                 )}
             </div>
+            </>
         );
     }
 
     return (
-        <div className="space-y-6 max-w-6xl mx-auto">
+        <>
+            <style>
+              {`
+                @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+                .font-custom-conductor {
+                  font-family: 'Plus Jakarta Sans', sans-serif;
+                }
+              `}
+            </style>
+        <div className="space-y-6 max-w-6xl mx-auto font-custom-conductor">
             <button
                 onClick={() => {
                     setSelectedTrip(null);
@@ -219,6 +238,7 @@ const ConductorValidate = () => {
                 </div>
             )}
         </div>
+        </>
     );
 };
 

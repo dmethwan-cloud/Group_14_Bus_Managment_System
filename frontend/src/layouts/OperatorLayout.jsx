@@ -6,8 +6,11 @@ const OperatorLayout = () => {
   const user = getUser();
   const navigate = useNavigate();
   const location = useLocation();
+  const [hoveredIndex, setHoveredIndex] = React.useState(null);
 
   const handleLogout = () => logout();
+
+  const hasBackground = ['/operator', '/operator/dashboard', '/operator/add-bus', '/operator/assign-buses', '/operator/profile', '/operator/change-password'].includes(location.pathname);
 
   const navLinks = [
     { name: 'Dashboard', path: '/operator/dashboard', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
@@ -17,25 +20,45 @@ const OperatorLayout = () => {
     { name: 'Change Password', path: '/operator/change-password', icon: 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z' },
   ];
 
+  const activeIndex = navLinks.findIndex(link => location.pathname.startsWith(link.path));
+
   return (
     <div className="flex h-screen bg-slate-50">
       <aside className="sidebar text-slate-300">
         <div className="sidebar-header">
           <h1 className="text-xl font-bold text-white tracking-wide">SmartTicket <span className="text-blue-500">Operator</span></h1>
         </div>
-        <nav className="flex-1 p-4 overflow-y-auto">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`sidebar-link ${location.pathname.startsWith(link.path) ? 'sidebar-link-active !border-blue-500 text-blue-400 bg-blue-500/10' : ''}`}
-            >
-              <svg className="sidebar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={link.icon} />
-              </svg>
-              {link.name}
-            </Link>
-          ))}
+        <nav 
+          className="flex-1 p-4 overflow-y-auto relative"
+          onMouseLeave={() => setHoveredIndex(null)}
+        >
+          {/* Magnetic Hover Pill */}
+          <div
+            className="absolute left-4 right-4 top-4 h-[44px] bg-gradient-to-r from-blue-600/20 to-transparent border border-blue-500/20 rounded-xl transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] z-0 pointer-events-none"
+            style={{
+              transform: `translateY(${(hoveredIndex !== null ? hoveredIndex : Math.max(0, activeIndex)) * 48}px)`,
+              opacity: (hoveredIndex === null && activeIndex === -1) ? 0 : 1,
+            }}
+          />
+
+          {navLinks.map((link, index) => {
+            const isActive = location.pathname.startsWith(link.path);
+            return (
+              <Link
+                key={link.path}
+                to={link.path}
+                onMouseEnter={() => setHoveredIndex(index)}
+                className={`sidebar-link relative z-10 !bg-transparent !border-transparent ${
+                  isActive ? 'text-blue-400 font-bold' : 'hover:!text-white'
+                }`}
+              >
+                <svg className="sidebar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={link.icon} />
+                </svg>
+                {link.name}
+              </Link>
+            );
+          })}
         </nav>
         <div className="p-4 border-t border-white/10">
           <button onClick={handleLogout} className="flex items-center gap-3 px-4 py-3 w-full rounded-lg text-sm font-medium text-red-400 hover:bg-red-500/10 transition-all duration-200">
@@ -60,8 +83,17 @@ const OperatorLayout = () => {
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto p-8">
-          <Outlet />
+        <div className={`flex-1 overflow-y-auto relative ${
+          hasBackground
+            ? 'bg-[url("https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop")] bg-cover bg-center bg-fixed'
+            : 'bg-slate-50'
+        }`}>
+          {hasBackground && (
+            <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm z-0"></div>
+          )}
+          <div className="relative z-10 p-8 h-full">
+            <Outlet />
+          </div>
         </div>
       </main>
     </div>

@@ -96,17 +96,26 @@ const PassengerDashboard = () => {
   };
 
   return (
-    <div className="space-y-6 max-w-5xl mx-auto">
+    <>
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+          .font-custom-passenger {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+          }
+        `}
+      </style>
+      <div className="space-y-6 max-w-5xl mx-auto font-custom-passenger">
       {/* Hero */}
-      <div className="bg-gradient-to-r from-emerald-600 to-teal-600 p-8 rounded-2xl text-white shadow-lg">
+      <div className="bg-gradient-to-r from-emerald-600/90 to-teal-600/90 backdrop-blur-md p-8 rounded-2xl text-white shadow-xl border border-emerald-400/20">
         <h2 className="text-3xl font-bold mb-1">Hello, {user?.full_name?.split(' ')[0] || 'Traveler'}! 🚍</h2>
         <p className="text-emerald-100">Search available buses and plan your journey.</p>
       </div>
 
       {/* Search Card */}
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
+      <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 p-8">
         <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-          <span className="w-9 h-9 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center">🔍</span>
+          <span className="w-9 h-9 bg-emerald-100/80 text-emerald-700 rounded-xl flex items-center justify-center shadow-sm">🔍</span>
           Search for a Bus
         </h3>
 
@@ -118,7 +127,7 @@ const PassengerDashboard = () => {
               <select
                 value={from}
                 onChange={handleFromChange}
-                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-slate-800 bg-slate-50 transition-all"
+                className="w-full px-4 py-3 border border-slate-200/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-slate-800 bg-white/70 backdrop-blur-sm transition-all"
                 required
                 disabled={loadingRoutes}
               >
@@ -135,7 +144,7 @@ const PassengerDashboard = () => {
               <select
                 value={to}
                 onChange={(e) => { setTo(e.target.value); setResults([]); setSearched(false); }}
-                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-slate-800 bg-slate-50 transition-all"
+                className="w-full px-4 py-3 border border-slate-200/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-slate-800 bg-white/70 backdrop-blur-sm transition-all"
                 required
                 disabled={!from || loadingRoutes}
               >
@@ -154,7 +163,7 @@ const PassengerDashboard = () => {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 min={new Date().toISOString().split('T')[0]}
-                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-slate-800 bg-slate-50 transition-all"
+                className="w-full px-4 py-3 border border-slate-200/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-slate-800 bg-white/70 backdrop-blur-sm transition-all"
               />
             </div>
           </div>
@@ -188,15 +197,15 @@ const PassengerDashboard = () => {
           </div>
 
           {searching ? (
-            <div className="bg-white rounded-2xl p-12 text-center shadow-sm border border-slate-100">
+            <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-12 text-center shadow-xl border border-white/40">
               <div className="w-10 h-10 border-4 border-emerald-200 border-t-emerald-600 rounded-full animate-spin mx-auto mb-4" />
-              <p className="text-slate-500">Finding available buses...</p>
+              <p className="text-slate-700 font-medium">Finding available buses...</p>
             </div>
           ) : results.length === 0 ? (
-            <div className="bg-white rounded-2xl p-12 text-center shadow-sm border border-slate-100">
+            <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-12 text-center shadow-xl border border-white/40">
               <p className="text-5xl mb-4">🚌</p>
-              <p className="text-slate-600 font-semibold text-lg">No buses available</p>
-              <p className="text-slate-400 text-sm mt-2">
+              <p className="text-slate-800 font-bold text-lg">No buses available</p>
+              <p className="text-slate-600 text-sm mt-2">
                 No approved buses found for <strong>{from} → {to}</strong>
                 {date ? ` on ${date}` : ''}. Try a different date or route.
               </p>
@@ -205,7 +214,7 @@ const PassengerDashboard = () => {
             results.map((bus) => (
               <div
                 key={bus.id}
-                className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all overflow-hidden"
+                className="group relative bg-white/90 backdrop-blur-xl rounded-2xl border border-white/50 shadow-lg hover:shadow-[0_8px_30px_rgba(139,92,246,0.3)] hover:border-violet-500/80 hover:scale-[1.02] transition-all duration-300 overflow-hidden"
               >
                 {/* Bus Card Header */}
                 <div className={`px-6 py-3 flex items-center gap-3 ${bus.bus_detail?.is_ac ? 'bg-blue-600' : 'bg-orange-500'}`}>
@@ -223,7 +232,7 @@ const PassengerDashboard = () => {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {/* Route */}
                     <div>
-                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-wide mb-1">Route</p>
+                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-widest mb-1">Route</p>
                       <p className="font-semibold text-slate-800 text-sm">
                         {bus.route_detail?.origin}
                         <span className="text-slate-400 mx-1">→</span>
@@ -233,17 +242,17 @@ const PassengerDashboard = () => {
 
                     {/* Date */}
                     <div>
-                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-wide mb-1">Date</p>
+                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-widest mb-1">Date</p>
                       <p className="font-semibold text-slate-800 text-sm">📅 {bus.date}</p>
                     </div>
 
                     {/* Times */}
                     <div>
-                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-wide mb-1">Departure</p>
+                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-widest mb-1">Departure</p>
                       <p className="font-bold text-emerald-700 text-sm">🕐 {formatTime(bus.departure_time)}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-wide mb-1">Arrival</p>
+                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-widest mb-1">Arrival</p>
                       <p className="font-bold text-blue-700 text-sm">🕑 {formatTime(bus.arrival_time)}</p>
                     </div>
                   </div>
@@ -264,13 +273,18 @@ const PassengerDashboard = () => {
                         </span>
                       </div>
                     </div>
-                    <button
-                      onClick={() => setSelectedBus(bus)}
-                      className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-xl transition-all shadow-sm hover:shadow-md"
-                    >
-                      Book Now →
-                    </button>
+                    {/* The static button is removed in favor of the sliding overlay button */}
                   </div>
+                </div>
+
+                {/* Sliding "Select Seat" Button */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-violet-900 via-violet-800/95 to-violet-800/90 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] flex justify-center border-t border-violet-500/50 shadow-[0_-10px_20px_rgba(139,92,246,0.2)]">
+                  <button
+                    onClick={() => setSelectedBus(bus)}
+                    className="w-full px-8 py-3 bg-white hover:bg-violet-50 text-violet-800 text-sm font-bold uppercase tracking-wider rounded-xl transition-all shadow-xl hover:shadow-violet-500/30 flex items-center justify-center gap-2 hover:scale-[1.02]"
+                  >
+                    Select Seat <span className="text-lg">💺</span>
+                  </button>
                 </div>
               </div>
             ))
@@ -280,8 +294,8 @@ const PassengerDashboard = () => {
 
       {/* Upcoming Trips */}
       {!searched && (
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-          <div className="px-8 py-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+        <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 overflow-hidden">
+          <div className="px-8 py-5 border-b border-white/30 flex items-center justify-between bg-white/40">
             <h3 className="text-lg font-bold text-slate-800">🗓️ Your Upcoming Trips</h3>
           </div>
 
@@ -294,9 +308,9 @@ const PassengerDashboard = () => {
               <p className="text-slate-400 text-sm mt-1">Search for a bus above to book your first trip!</p>
             </div>
           ) : (
-            <div className="divide-y divide-slate-50">
+            <div className="divide-y divide-slate-200/50">
               {bookings.map((b) => (
-                <div key={b.id} className="p-6 hover:bg-slate-50 transition-colors">
+                <div key={b.id} className="p-6 hover:bg-white/60 transition-colors">
                   <div className="flex flex-col md:flex-row gap-4 justify-between">
                     <div>
                       <div className="flex items-center gap-3 mb-2">
@@ -319,7 +333,7 @@ const PassengerDashboard = () => {
                       </p>
                     </div>
                     <div className="text-left md:text-right">
-                      <p className="text-xs text-slate-400 font-semibold uppercase">Purchase ID</p>
+                      <p className="text-xs text-slate-400 font-semibold uppercase tracking-widest">Purchase ID</p>
                       <p className="font-mono font-bold text-slate-700 mb-2">{b.purchase_id}</p>
                       <p className="text-sm">
                         <span className="font-semibold text-slate-600">{b.seat_count} Seats</span> •
@@ -349,6 +363,7 @@ const PassengerDashboard = () => {
         />
       )}
     </div>
+    </>
   );
 };
 

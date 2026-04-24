@@ -50,7 +50,16 @@ const ConductorDashboard = () => {
 
   if (selectedTrip) {
     return (
-      <div className="space-y-6 max-w-5xl mx-auto animate-fade-in-up">
+      <>
+        <style>
+          {`
+            @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+            .font-custom-conductor {
+              font-family: 'Plus Jakarta Sans', sans-serif;
+            }
+          `}
+        </style>
+      <div className="space-y-6 max-w-5xl mx-auto animate-fade-in-up font-custom-conductor">
         <button 
           onClick={() => setSelectedTrip(null)}
           className="text-amber-600 hover:text-amber-700 font-bold flex items-center gap-2 mb-4"
@@ -58,35 +67,35 @@ const ConductorDashboard = () => {
           ← Back to Schedule
         </button>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 mb-6">
+        <div className="bg-white/90 backdrop-blur-xl p-6 rounded-2xl shadow-xl border border-white/40 mb-6">
           <h2 className="text-2xl font-bold text-slate-800 mb-2">Trip Passenger List</h2>
-          <p className="text-slate-500 font-medium">
+          <p className="text-slate-600 font-medium">
             🚌 {selectedTrip.bus_detail?.bus_number} — {selectedTrip.route_detail?.name}
           </p>
           <p className="text-slate-500 text-sm">📅 {selectedTrip.date} at {formatTime(selectedTrip.departure_time)}</p>
         </div>
 
         {loadingPassengers ? (
-          <div className="text-center p-12 text-slate-500">Loading passengers...</div>
+          <div className="text-center p-12 text-slate-200">Loading passengers...</div>
         ) : passengers.length === 0 ? (
-          <div className="bg-white p-12 rounded-2xl shadow-sm border border-slate-100 text-center">
+          <div className="bg-white/90 backdrop-blur-xl p-12 rounded-2xl shadow-xl border border-white/40 text-center">
             <p className="text-5xl mb-3">🪑</p>
-            <p className="text-slate-500 font-medium">No bookings for this trip yet.</p>
+            <p className="text-slate-700 font-medium">No bookings for this trip yet.</p>
           </div>
         ) : (
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+          <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 overflow-hidden">
             <table className="w-full text-left">
-              <thead className="bg-slate-50 border-b border-slate-100">
+              <thead className="bg-white/40 border-b border-white/40">
                 <tr>
-                  <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Purchase ID</th>
-                  <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Passenger</th>
-                  <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Seats</th>
-                  <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Status</th>
+                  <th className="px-6 py-4 text-xs font-bold text-slate-600 uppercase">Purchase ID</th>
+                  <th className="px-6 py-4 text-xs font-bold text-slate-600 uppercase">Passenger</th>
+                  <th className="px-6 py-4 text-xs font-bold text-slate-600 uppercase">Seats</th>
+                  <th className="px-6 py-4 text-xs font-bold text-slate-600 uppercase">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-50">
+              <tbody className="divide-y divide-slate-200/50">
                 {passengers.map(p => (
-                  <tr key={p.id} className="hover:bg-slate-50">
+                  <tr key={p.id} className="hover:bg-white/60 transition-colors">
                     <td className="px-6 py-4 font-mono font-bold text-slate-700">{p.purchase_id}</td>
                     <td className="px-6 py-4">
                       <p className="font-bold text-slate-800">{p.user_detail?.full_name}</p>
@@ -108,25 +117,35 @@ const ConductorDashboard = () => {
           </div>
         )}
       </div>
+      </>
     );
   }
 
   return (
-    <div className="space-y-6 max-w-5xl mx-auto">
-      <div className="bg-gradient-to-r from-amber-500 to-orange-600 p-8 rounded-2xl text-white shadow-lg">
+    <>
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+          .font-custom-conductor {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+          }
+        `}
+      </style>
+    <div className="space-y-6 max-w-5xl mx-auto font-custom-conductor">
+      <div className="bg-gradient-to-r from-amber-500/90 to-orange-600/90 backdrop-blur-md p-8 rounded-2xl text-white shadow-xl border border-amber-400/20">
         <h2 className="text-3xl font-bold mb-2">Welcome aboard, {user?.full_name?.split(' ')[0] || 'Conductor'}! 🎫</h2>
         <p className="text-amber-100">Ready for today's journey? Here's your schedule.</p>
       </div>
 
       <div className="mt-8">
-        <h3 className="text-xl font-bold text-slate-800 mb-4">🗓️ Your Assigned Trips</h3>
+        <h3 className="text-xl font-bold text-white mb-4 drop-shadow-md">🗓️ Your Assigned Trips</h3>
         {loadingTrips ? (
-          <div className="text-center p-12 text-slate-500">Loading your schedule...</div>
+          <div className="text-center p-12 text-slate-200">Loading your schedule...</div>
         ) : trips.length === 0 ? (
-          <div className="bg-white p-12 rounded-2xl shadow-sm border border-slate-100 text-center">
+          <div className="bg-white/90 backdrop-blur-xl p-12 rounded-2xl shadow-xl border border-white/40 text-center">
             <p className="text-5xl mb-3">🚌</p>
-            <p className="text-slate-500 font-medium">No trips assigned yet.</p>
-            <p className="text-slate-400 text-sm mt-1">Check back later or contact your operator.</p>
+            <p className="text-slate-800 font-bold text-lg">No trips assigned yet.</p>
+            <p className="text-slate-600 text-sm mt-1">Check back later or contact your operator.</p>
           </div>
         ) : (
           <div className="space-y-6">
@@ -136,24 +155,24 @@ const ConductorDashboard = () => {
               const bookedSeats = totalSeats - availableSeats;
 
               return (
-                <div key={trip.id} className="card glass-card hover:-translate-y-1 transition-transform border-t-4 border-t-amber-500 shadow-xl">
+                <div key={trip.id} className="bg-white/90 backdrop-blur-xl p-8 rounded-2xl border border-white/40 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all border-t-4 border-t-amber-500">
                   <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
                     <div>
                       <h3 className="text-2xl font-bold text-slate-800">{trip.route_detail?.name}</h3>
-                      <p className="text-slate-500 text-lg font-medium mt-1">
+                      <p className="text-slate-600 text-lg font-medium mt-1">
                         Bus: {trip.bus_detail?.bus_number} • {trip.date} at {formatTime(trip.departure_time)}
                       </p>
                     </div>
                   </div>
                   
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-                    <div className="bg-slate-50 p-4 rounded-xl text-center">
-                      <p className="text-sm text-slate-500">Seats Reserved</p>
+                    <div className="bg-white/50 backdrop-blur-sm border border-white/40 p-4 rounded-xl text-center shadow-sm">
+                      <p className="text-sm text-slate-600">Seats Reserved</p>
                       <p className="text-2xl font-bold text-slate-800">{bookedSeats}/{totalSeats}</p>
                     </div>
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row gap-4">
+                  <div className="mt-8 pt-6 border-t border-slate-200/50 flex flex-col sm:flex-row gap-4">
                     <button 
                       onClick={() => handleViewPassengers(trip)}
                       className="btn-primary w-full sm:flex-1 bg-amber-600 hover:bg-amber-700 py-3 text-lg rounded-xl shadow-md"
@@ -168,6 +187,7 @@ const ConductorDashboard = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

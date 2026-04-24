@@ -6,6 +6,7 @@ import { setTokens, setUser, getDashboardPath } from '../../utils/auth';
 const LoginPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -43,13 +44,57 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
+    <>
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+          .font-custom-auth {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+          }
+        `}
+      </style>
+      <div 
+        className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-cover bg-center bg-no-repeat relative font-custom-auth"
+        style={{ backgroundImage: "url('/images/bus_home_bg.png')" }}
+      >
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent z-0 pointer-events-none"></div>
+
+      {/* ── Navbar ── */}
+      <header className="absolute top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-20 items-center">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-2">
+              <div className="bg-primary-600 text-white p-2 rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                </svg>
+              </div>
+              <span className="text-2xl font-black text-slate-800 tracking-tighter">SmartBus</span>
+            </Link>
+
+            {/* Auth Buttons */}
+            <div className="flex items-center gap-6">
+              <Link to="/about-us" className="text-slate-600 font-semibold text-sm hover:text-primary-600 transition-colors">
+                About Us
+              </Link>
+              <div className="h-6 w-px bg-slate-300 hidden sm:block"></div>
+              <Link to="/login" className="text-slate-600 font-semibold text-sm hover:text-primary-600 transition-colors">
+                Log In
+              </Link>
+              <Link to="/register" className="btn-primary py-2 px-6 rounded-full text-sm shadow-md shadow-primary-500/20">
+                Get Started
+              </Link>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div className="auth-card">
         <div>
-          <h2 className="mt-2 text-center text-3xl font-extrabold text-slate-900">
+          <h2 className="auth-title">
             Welcome Back
           </h2>
-          <p className="mt-2 text-center text-sm text-slate-600">
+          <p className="auth-subtitle">
             Sign in to access the Smart Bus System
           </p>
         </div>
@@ -63,13 +108,13 @@ const LoginPage = () => {
 
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="input-label">Email address</label>
+              <label htmlFor="email" className="auth-label">Email address</label>
               <input
                 id="email"
                 name="email"
                 type="email"
                 required
-                className="input-field"
+                className="auth-input"
                 placeholder="passenger@example.com"
                 value={formData.email}
                 onChange={handleChange}
@@ -78,21 +123,39 @@ const LoginPage = () => {
 
             <div>
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="input-label">Password</label>
-                <Link to="/forgot-password" className="text-sm font-medium text-primary-600 hover:text-primary-500 mb-1.5">
+                <label htmlFor="password" className="auth-label">Password</label>
+                <Link to="/forgot-password" className="text-sm font-medium text-primary-400 hover:text-primary-300 mb-1.5">
                   Forgot Password?
                 </Link>
               </div>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                className="input-field"
-                placeholder="••••••••"
-                value={formData.password}
-                onChange={handleChange}
-              />
+              <div className="relative">
+                <input
+                  id="password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  required
+                  className="auth-input pr-10"
+                  placeholder="••••••••"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 text-slate-400 hover:text-white focus:outline-none"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <svg className="h-5 w-5" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                    </svg>
+                  ) : (
+                    <svg className="h-5 w-5" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  )}
+                </button>
+              </div>
             </div>
           </div>
 
@@ -108,15 +171,16 @@ const LoginPage = () => {
         </form>
 
         <div className="text-center text-sm">
-          <p className="text-slate-600">
+          <p className="text-slate-200">
             Don't have an account?{' '}
-            <Link to="/register" className="font-medium text-primary-600 hover:text-primary-500">
+            <Link to="/register" className="font-medium text-primary-400 hover:text-primary-300">
               Register
             </Link>
           </p>
         </div>
       </div>
     </div>
+    </>
   );
 };
 

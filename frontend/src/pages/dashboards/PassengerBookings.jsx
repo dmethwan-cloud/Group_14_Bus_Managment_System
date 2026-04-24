@@ -90,7 +90,16 @@ const PassengerBookings = () => {
 
     if (selectedBooking) {
         return (
-            <div className="space-y-6 max-w-4xl mx-auto">
+            <>
+              <style>
+                {`
+                  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+                  .font-custom-passenger {
+                    font-family: 'Plus Jakarta Sans', sans-serif;
+                  }
+                `}
+              </style>
+              <div className="space-y-6 max-w-4xl mx-auto font-custom-passenger">
                 <button
                     onClick={() => setSelectedBooking(null)}
                     className="text-emerald-600 hover:text-emerald-700 font-bold flex items-center gap-2 mb-4"
@@ -99,7 +108,7 @@ const PassengerBookings = () => {
                 </button>
 
                 {/* Booking Header */}
-                <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-8 rounded-2xl text-white shadow-lg">
+                <div className="bg-gradient-to-r from-emerald-500/90 to-teal-600/90 backdrop-blur-md p-8 rounded-2xl text-white shadow-xl border border-emerald-400/20">
                     <div className="flex justify-between items-start mb-4">
                         <div>
                             <h2 className="text-3xl font-bold mb-2">Booking Details</h2>
@@ -112,15 +121,15 @@ const PassengerBookings = () => {
                 </div>
 
                 {/* Trip Details Card */}
-                <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 p-6">
                     <h3 className="text-xl font-bold text-slate-800 mb-4">🚌 Trip Information</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <p className="text-sm text-slate-500 font-semibold uppercase">Route</p>
+                            <p className="text-sm text-slate-500 font-semibold uppercase tracking-widest">Route</p>
                             <p className="text-xl font-bold text-slate-800 mt-1">{selectedBooking.bus_assignment_detail?.route_detail?.name}</p>
                         </div>
                         <div>
-                            <p className="text-sm text-slate-500 font-semibold uppercase">Bus</p>
+                            <p className="text-sm text-slate-500 font-semibold uppercase tracking-widest">Bus</p>
                             <p className="text-xl font-bold text-slate-800 mt-1">
                                 {selectedBooking.bus_assignment_detail?.bus_detail?.bus_number}
                                 <span className="text-sm text-slate-500 ml-2">
@@ -129,31 +138,31 @@ const PassengerBookings = () => {
                             </p>
                         </div>
                         <div>
-                            <p className="text-sm text-slate-500 font-semibold uppercase">Date</p>
+                            <p className="text-sm text-slate-500 font-semibold uppercase tracking-widest">Date</p>
                             <p className="text-xl font-bold text-slate-800 mt-1">📅 {selectedBooking.bus_assignment_detail?.date}</p>
                         </div>
                         <div>
-                            <p className="text-sm text-slate-500 font-semibold uppercase">Departure Time</p>
+                            <p className="text-sm text-slate-500 font-semibold uppercase tracking-widest">Departure Time</p>
                             <p className="text-xl font-bold text-slate-800 mt-1">🕐 {formatTime(selectedBooking.bus_assignment_detail?.departure_time)}</p>
                         </div>
                     </div>
                 </div>
 
                 {/* Booking Details Card */}
-                <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 p-6">
                     <h3 className="text-xl font-bold text-slate-800 mb-4">🎫 Booking Details</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="bg-slate-50 p-4 rounded-xl">
-                            <p className="text-sm text-slate-500 font-semibold uppercase">Seats Booked</p>
+                        <div className="bg-white/50 backdrop-blur-sm border border-white/40 p-4 rounded-xl shadow-sm">
+                            <p className="text-sm text-slate-600 font-semibold uppercase tracking-widest">Seats Booked</p>
                             <p className="text-3xl font-bold text-emerald-600 mt-2">{selectedBooking.seat_count}</p>
                         </div>
-                        <div className="bg-slate-50 p-4 rounded-xl">
-                            <p className="text-sm text-slate-500 font-semibold uppercase">Total Fare</p>
+                        <div className="bg-white/50 backdrop-blur-sm border border-white/40 p-4 rounded-xl shadow-sm">
+                            <p className="text-sm text-slate-600 font-semibold uppercase tracking-widest">Total Fare</p>
                             <p className="text-3xl font-bold text-blue-600 mt-2">LKR {parseFloat(selectedBooking.total_fare).toFixed(2)}</p>
                         </div>
-                        <div className="bg-slate-50 p-4 rounded-xl">
-                            <p className="text-sm text-slate-500 font-semibold uppercase">Payment Method</p>
-                            <p className="text-2xl font-bold text-slate-700 mt-2 capitalize">
+                        <div className="bg-white/50 backdrop-blur-sm border border-white/40 p-4 rounded-xl shadow-sm">
+                            <p className="text-sm text-slate-600 font-semibold uppercase tracking-widest">Payment Method</p>
+                            <p className="text-2xl font-bold text-slate-800 mt-2 capitalize">
                                 {selectedBooking.payment_method === 'cash' ? '💵 Cash' : '💳 Online'}
                             </p>
                         </div>
@@ -161,24 +170,24 @@ const PassengerBookings = () => {
                 </div>
 
                 {/* Payment Information */}
-                <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 p-6">
                     <h3 className="text-xl font-bold text-slate-800 mb-4">💰 Payment Information</h3>
                     <div className="space-y-4">
                         <div>
-                            <p className="text-sm text-slate-500 font-semibold uppercase">Status</p>
+                            <p className="text-sm text-slate-500 font-semibold uppercase tracking-widest">Status</p>
                             <p className={`mt-1 inline-block px-3 py-1 rounded-lg font-bold text-sm border ${getStatusColor(selectedBooking.payment_status)}`}>
                                 {(selectedBooking.payment_status || 'pending').toUpperCase()}
                             </p>
                         </div>
                         {selectedBooking.payment_method === 'online' && selectedBooking.payment_reference && (
                             <div>
-                                <p className="text-sm text-slate-500 font-semibold uppercase">Transaction Reference</p>
+                                <p className="text-sm text-slate-500 font-semibold uppercase tracking-widest">Transaction Reference</p>
                                 <p className="font-mono font-bold text-slate-700 mt-1">{selectedBooking.payment_reference}</p>
                             </div>
                         )}
                         {selectedBooking.payment_proof && (
                             <div>
-                                <p className="text-sm text-slate-500 font-semibold uppercase">Payment Proof</p>
+                                <p className="text-sm text-slate-500 font-semibold uppercase tracking-widest">Payment Proof</p>
                                 <a
                                     href={selectedBooking.payment_proof}
                                     target="_blank"
@@ -193,7 +202,7 @@ const PassengerBookings = () => {
                 </div>
 
                 {/* Booking Dates */}
-                <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 p-6">
                     <h3 className="text-xl font-bold text-slate-800 mb-4">📅 Timeline</h3>
                     <div className="space-y-3">
                         <div className="flex justify-between">
@@ -207,36 +216,46 @@ const PassengerBookings = () => {
                     </div>
                 </div>
             </div>
+            </>
         );
     }
 
     return (
-        <div className="space-y-6 max-w-6xl mx-auto">
+        <>
+            <style>
+              {`
+                @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+                .font-custom-passenger {
+                  font-family: 'Plus Jakarta Sans', sans-serif;
+                }
+              `}
+            </style>
+            <div className="space-y-6 max-w-6xl mx-auto font-custom-passenger">
             {/* Header */}
-            <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-8 rounded-2xl text-white shadow-lg">
+            <div className="bg-gradient-to-r from-emerald-500/90 to-teal-600/90 backdrop-blur-md p-8 rounded-2xl text-white shadow-xl border border-emerald-400/20">
                 <h2 className="text-3xl font-bold mb-2">My Bookings</h2>
                 <p className="text-emerald-100">Track and manage all your ticket reservations</p>
             </div>
 
             {/* Statistics */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="bg-white p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-white/90 backdrop-blur-xl p-4 rounded-xl shadow-xl border border-white/40 text-center">
                     <p className="text-sm text-slate-500">Total Bookings</p>
                     <p className="text-3xl font-bold text-slate-800 mt-2">{bookings.length}</p>
                 </div>
-                <div className="bg-white p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-white/90 backdrop-blur-xl p-4 rounded-xl shadow-xl border border-white/40 text-center">
                     <p className="text-sm text-slate-500">Confirmed</p>
                     <p className="text-3xl font-bold text-emerald-600 mt-2">
                         {bookings.filter(b => b.payment_status === 'accepted').length}
                     </p>
                 </div>
-                <div className="bg-white p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-white/90 backdrop-blur-xl p-4 rounded-xl shadow-xl border border-white/40 text-center">
                     <p className="text-sm text-slate-500">Pending</p>
                     <p className="text-3xl font-bold text-amber-600 mt-2">
                         {bookings.filter(b => b.payment_status === 'pending').length}
                     </p>
                 </div>
-                <div className="bg-white p-4 rounded-xl border border-slate-100 text-center">
+                <div className="bg-white/90 backdrop-blur-xl p-4 rounded-xl shadow-xl border border-white/40 text-center">
                     <p className="text-sm text-slate-500">Total Spent</p>
                     <p className="text-3xl font-bold text-blue-600 mt-2">
                         LKR {bookings.reduce((sum, b) => sum + parseFloat(b.total_fare || 0), 0).toFixed(2)}
@@ -245,7 +264,7 @@ const PassengerBookings = () => {
             </div>
 
             {/* Filters and Search */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 space-y-4">
+            <div className="bg-white/90 backdrop-blur-xl p-6 rounded-2xl shadow-xl border border-white/40 space-y-4">
                 <div>
                     <label className="block text-sm font-bold text-slate-700 mb-2">🔍 Search Bookings</label>
                     <input
@@ -253,7 +272,7 @@ const PassengerBookings = () => {
                         placeholder="Search by Purchase ID, Route, or Bus Number..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-400 focus:outline-none"
+                        className="w-full px-4 py-3 border border-slate-200/60 rounded-xl bg-white/70 backdrop-blur-sm focus:ring-2 focus:ring-emerald-400 focus:outline-none"
                     />
                 </div>
 
@@ -272,8 +291,8 @@ const PassengerBookings = () => {
                                     key={status}
                                     onClick={() => setFilterStatus(status)}
                                     className={`px-4 py-2 rounded-lg font-bold transition-all ${filterStatus === status
-                                        ? 'bg-emerald-600 text-white'
-                                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                        ? 'bg-emerald-600 text-white shadow-md'
+                                        : 'bg-white/60 backdrop-blur-sm border border-white/50 text-slate-700 hover:bg-white/90 shadow-sm'
                                         }`}
                                 >
                                     {labels[status]}
@@ -288,7 +307,7 @@ const PassengerBookings = () => {
             {loading ? (
                 <div className="text-center p-12 text-slate-500">Loading your bookings...</div>
             ) : filteredBookings.length === 0 ? (
-                <div className="bg-white p-12 rounded-2xl shadow-sm border border-slate-100 text-center">
+                <div className="bg-white/90 backdrop-blur-xl p-12 rounded-2xl shadow-xl border border-white/40 text-center">
                     <p className="text-5xl mb-3">🎫</p>
                     <p className="text-slate-500 font-medium">No bookings found.</p>
                     {searchQuery && <p className="text-slate-400 text-sm mt-1">Try adjusting your search.</p>}
@@ -299,7 +318,7 @@ const PassengerBookings = () => {
                         <div
                             key={booking.id}
                             onClick={() => setSelectedBooking(booking)}
-                            className="bg-white p-6 rounded-xl border border-slate-100 hover:shadow-lg hover:border-emerald-200 transition-all cursor-pointer"
+                            className="bg-white/90 backdrop-blur-xl p-6 rounded-xl border border-white/40 shadow-md hover:shadow-xl hover:border-emerald-300 transition-all cursor-pointer"
                         >
                             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                                 <div className="flex-1">
@@ -319,11 +338,11 @@ const PassengerBookings = () => {
 
                                 <div className="flex flex-col md:text-right gap-2">
                                     <div>
-                                        <p className="text-xs text-slate-500 font-semibold uppercase">Seats</p>
+                                        <p className="text-xs text-slate-500 font-semibold uppercase tracking-widest">Seats</p>
                                         <p className="text-2xl font-bold text-slate-800">{booking.seat_count}</p>
                                     </div>
                                     <div>
-                                        <p className="text-xs text-slate-500 font-semibold uppercase">Total</p>
+                                        <p className="text-xs text-slate-500 font-semibold uppercase tracking-widest">Total</p>
                                         <p className="text-2xl font-bold text-emerald-600">LKR {parseFloat(booking.total_fare).toFixed(2)}</p>
                                     </div>
                                 </div>
@@ -339,6 +358,7 @@ const PassengerBookings = () => {
                 </div>
             )}
         </div>
+        </>
     );
 };
 
