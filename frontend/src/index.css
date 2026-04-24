@@ -68,7 +68,7 @@
   }
   
   .auth-title {
-    @apply mt-2 text-center text-3xl font-extrabold text-white tracking-tight;
+    @apply mt-2 text-center text-3xl font-black text-white tracking-tight;
   }
   
   .auth-subtitle {

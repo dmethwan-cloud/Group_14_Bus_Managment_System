@@ -51,7 +51,7 @@ const AboutUsPage = () => {
         {/* ── Hero Title Section ── */}
         <section className="relative h-[30vh] min-h-[250px] flex items-center justify-center border-b border-white/10 bg-slate-900/40 backdrop-blur-sm">
           <div className="relative z-10 text-center px-4">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg mb-4">About SmartBus</h1>
+            <h1 className="text-4xl md:text-5xl font-black text-white drop-shadow-lg mb-4">About SmartBus</h1>
             <p className="text-xl text-slate-200 drop-shadow max-w-2xl mx-auto">Revolutionizing travel across Sri Lanka, one seamless journey at a time.</p>
           </div>
         </section>
@@ -61,7 +61,7 @@ const AboutUsPage = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24">
             <div>
-              <h2 className="text-3xl font-bold text-white mb-6 relative drop-shadow-md">
+              <h2 className="text-3xl font-black text-white mb-6 relative drop-shadow-md">
                 Your Journey, Simplified.
                 <div className="absolute -bottom-2 left-0 w-16 h-1 bg-primary-500 rounded"></div>
               </h2>
@@ -78,7 +78,7 @@ const AboutUsPage = () => {
              <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-primary-500/20 blur-3xl rounded-full"></div>
              <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-purple-500/20 blur-3xl rounded-full"></div>
              
-             <h2 className="text-3xl font-bold mb-6 relative z-10">Our Commitment to Reliability</h2>
+             <h2 className="text-3xl font-black mb-6 relative z-10">Our Commitment to Reliability</h2>
              <p className="text-slate-300 text-lg max-w-3xl mx-auto leading-relaxed z-10 relative">
                Trust is the engine that drives our platform. We thoroughly vet every bus operator and conductor on our system. When you book a seat through SmartBus, you can rest assured that your payment is 100% secure, your seat is guaranteed, and your departure times are accurate. No overbooking, no last-minute cancellations without notice. We are here for you 24/7.
              </p>
