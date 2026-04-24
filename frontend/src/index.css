@@ -67,7 +67,7 @@
   
   /* Auth Glassmorphism */
   .auth-card {
-    @apply max-w-md w-full space-y-8 bg-white/10 backdrop-blur-2xl p-8 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] border border-white/20 relative z-10;
+    @apply max-w-md w-full space-y-8 bg-white/10 backdrop-blur-2xl p-8 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] border border-white/5 border-t-white/40 border-l-white/30 relative z-10;
   }
   
   .auth-title {
