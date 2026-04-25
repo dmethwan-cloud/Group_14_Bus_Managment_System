@@ -43,11 +43,25 @@ const processQueue = (error, token = null) => {
 };
 
 // ── Request interceptor: attach access token ──────────────────
+// Auth endpoints must NOT receive a stale token — doing so causes the
+// backend to reject the request with 401 before checking credentials.
+const PUBLIC_ENDPOINTS = [
+  '/auth/login/',
+  '/auth/register/',
+  '/auth/token/refresh/',
+  '/auth/forgot-password/',
+  '/auth/reset-password/',
+  '/auth/verify-otp/',
+];
+
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = getAccessToken();
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    const isPublic = PUBLIC_ENDPOINTS.some((ep) => config.url?.includes(ep));
+    if (!isPublic) {
+      const token = getAccessToken();
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
     }
     return config;
   },
